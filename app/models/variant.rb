@@ -11,6 +11,12 @@ class Variant < ApplicationRecord
 
   before_save :set_stock_status
 
+  # Использовать в контроллере, чтобы указать цену  на конкретный вариант товара.
+  # Если в таблице variants есть цена, то она переопределит цену из products.
+  def final_price
+    price.present? ? price : product.base_price
+  end
+
   private
 
   def set_stock_status
