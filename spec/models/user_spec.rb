@@ -252,24 +252,10 @@ RSpec.describe User, type: :model do
     end
   end
 
-  # Проверка ролей
-  describe "Role validation" do
-    it "allows valid roles"
-    it "rejects invalid roles"
-  end
-
-  # 📌 Проверка фабрики FactoryBot
+  # Проверка фабрики FactoryBot
   describe "FactoryBot" do
     it "creates a valid user"
     it "creates multiple users with unique emails"
     it "creates an admin user using trait"
   end
 end
-
-
-# Проверка валидаций
-# Проверка ассоциаций
-# Проверка коллбеков (before_save)
-# Проверка шифрования пароля
-# Проверка ролей
-# Проверка фабрики

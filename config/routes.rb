@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root "products#index"
 
   resources :products, only: [:index, :show]
-  resources :categories, only: [:index, :show]
+  resources :categories, param: :slug, only: [:index, :show]
 
   # Корзина (доступна и для авторизованных пользователей и для гостей)
   resource :cart, only: [:show] do

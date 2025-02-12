@@ -7,7 +7,7 @@ class Product < ApplicationRecord
   validates :name, 
     presence: true, 
     uniqueness: { message: "Уже есть товар с таким названием" },
-    format: { with: /\A[1-9a-zA-Zа-яА-ЯёЁ\s'-:;]+\z/, message: "Название должно состоять из букв, цифр и символов (- : ;)" },
+    format: { with: Constants::ALPHANUMERIC_NAME_FORMAT, message: "Название может состоять из букв, цифр и разрешенных символов" },
     length: {
       minimum: 20, too_short: "Длина названия не должна быть меньше %{count} символов",
       maximum: 100, too_long: "Длина названия не должна быть больше %{count} символов"
@@ -23,8 +23,10 @@ class Product < ApplicationRecord
 
   validates :main_material, 
     presence: true, 
+    format: { with: Constants::ALPHANUMERIC_NAME_FORMAT, message: "Название может состоять из букв, цифр и разрешенных символов" },
     length: { maximum: 50, message: "Максимальная длина 100 символов" }
   
     validates :filling_material, 
+    format: { with: Constants::ALPHANUMERIC_NAME_FORMAT, message: "Название может состоять из букв, цифр и разрешенных символов" },
     length: { maximum: 50, message: "Максимальная длина 100 символов" }
 end
