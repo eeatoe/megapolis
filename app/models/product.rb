@@ -1,32 +1,27 @@
 class Product < ApplicationRecord
+  # Связи (associations)
   belongs_to :category
   belongs_to :brand, optional: true 
   has_many :variants, dependent: :destroy
   has_many_attached :images, dependent: :purge # Active Storage
 
-  validates :name, 
-    presence: true, 
-    uniqueness: { message: "Уже есть товар с таким названием" },
-    format: { with: Constants::ALPHANUMERIC_NAME_FORMAT, message: "Название может состоять из букв, цифр и разрешенных символов" },
-    length: {
-      minimum: 20, too_short: "Длина названия не должна быть меньше %{count} символов",
-      maximum: 100, too_long: "Длина названия не должна быть больше %{count} символов"
-    }
+  # Валидации (validations)
+  validates :name, presence: true, 
+    uniqueness: true,
+    format: { with: Constants::ALPHANUMERIC_NAME_FORMAT },
+    length: { minimum: 20, maximum: 100 }
 
-  validates :description, 
-    presence: true, 
-    length: { maximum: 500, message: "Максимальная длина 500 символов" }
+  validates :description, presence: true, 
+    length: { maximum: 500 }
 
-  validates :base_price, 
-    presence: true, 
-    numericality: { greater_than: 0, message: "Цена должна быть положительной" }
+  validates :base_price, presence: true, 
+    numericality: { greater_than: 0 }
 
-  validates :main_material, 
-    presence: true, 
-    format: { with: Constants::ALPHANUMERIC_NAME_FORMAT, message: "Название может состоять из букв, цифр и разрешенных символов" },
-    length: { maximum: 50, message: "Максимальная длина 100 символов" }
+  validates :main_material, presence: true, 
+    format: { with: Constants::ALPHANUMERIC_NAME_FORMAT },
+    length: { maximum: 50 }
   
     validates :filling_material, 
-    format: { with: Constants::ALPHANUMERIC_NAME_FORMAT, message: "Название может состоять из букв, цифр и разрешенных символов" },
-    length: { maximum: 50, message: "Максимальная длина 100 символов" }
+    format: { with: Constants::ALPHANUMERIC_NAME_FORMAT },
+    length: { maximum: 50 }
 end

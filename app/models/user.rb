@@ -3,53 +3,37 @@ require 'bcrypt'
 class User < ApplicationRecord
   has_secure_password
 
+  # Связи (associations)
   has_many :orders
   has_one :cart
 
-  # Нормализация email и name перед сохранением в БД
-  before_save :normalize_email
-  before_save :normalize_name
+  # Валидации (validations)
+  validates :name, presence: true,
+    length: { minimum: 2, maximum: 50 },
+    format: { with: /\A[a-zA-Zа-яА-ЯёЁ\s'-]+\z/ }
 
-  # Регулярное выражение для валидации пароля
-  PASSWORD_FORMAT = /\A
-    (?=.*\d)           # Должен содержать цифры
-    (?=.*[a-z])        # Должен содержать строчные буквы
-    (?=.*[A-Z])        # Должен содержать заглавные буквы
-  \z/x
+  validates :email, presence: true,
+    uniqueness: { case_sensitive: false },
+    format: { with: URI::MailTo::EMAIL_REGEXP },
+    length: { minimum: 5, maximum: 254 }
 
-  validates :name,
-    presence: { message: "Поле с именем должно быть заполненным"},
-    length: { 
-      minimum: 2, too_short: "Имя должно быть больше %{count} символов",
-      maximum: 50, too_long: "Имя должно быть меньше %{count} символов"
-    },
-    format: { with: /\A[a-zA-Zа-яА-ЯёЁ\s'-]+\z/, message: "Имя должно состаять только из букв" }
-
-  validates :email, 
-    presence: { case_sensitive: false, message: "Поле email должно быть заполненным" },
-    uniqueness: { message: "Пользователь с таким email уже есть" },
-    format: { with: URI::MailTo::EMAIL_REGEXP, message: "Неправильный формат email" },
-    length: {
-      maximum: 254, minimum: 5, 
-      message: "Электронных почт такой длины не существует"
-    }
-
-  validates :password,
-    confirmation: { message: "Пароли не совпадают" },
-    presence: { message: "Поле пароля должно быть заполненным" },
-    format: { with: PASSWORD_FORMAT, message: "Пароль должен содержать хотя бы одну цифру, одну заглавную и одну строчную букву" },
-    length: { 
-      minimum: 6, too_short: "Длина пароля не должна быть меньше %{count} символов",
-      maximum: 72, too_long: "Длина пароля не должна быть больше %{count} символов"
-    }
+  validates :password, presence: true,
+    confirmation: true,
+    format: { with: Constants::PASSWORD_FORMAT },
+    length: { minimum: 6, maximum: 72 }
 
   validates :password_confirmation, 
-    presence: { message: "Поле подтверждения пароля должно быть заполненным" }, if: -> { password.present? }
+    presence: true, if: -> { password.present? }
 
-  validates :role,
-    presence: true,
+  validates :role, presence: true,
     inclusion: { in: %w(customer admin) }
 
+  # Скоупы (scopes)
+  # ...
+  
+  # Коллбэки (callbacks)
+  before_save :normalize_email
+  before_save :normalize_name
 
   private
 

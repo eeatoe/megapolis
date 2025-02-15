@@ -1,19 +1,31 @@
 class Variant < ApplicationRecord
+  # Связи (associations)
   belongs_to :product
 
-  validates :color, :size, :weight, presence: true
-  validates :color, uniqueness: { scope: [:product_id, :size], message: "Такой вариант цвета уже существует" }
-  validates :size, 
-    uniqueness: { scope: [:product_id, :color],
-    inclusion: { in: %w[S M L XL XXL] },
-    message: "Такой вариант размера уже существует" }
-  validates :stock_status, 
-    presence: true, 
-    inclusion: { in: %w[in_stock out_of_stock pre_order] }
-  validates :stock_quantity, numericality: { greater_than_or_equal_to: 0, only_integer: true }
-  validates :price, numericality: { greater_than: 0 }, allow_nil: true
-  validates :weight, numericality: { greater_than: 0 }
+  # Валидации (validations)
+  validates :color, presence: true,
+    uniqueness: { scope: [:product_id, :size] }
+  
+  validates :size, presence: true,
+    uniqueness: { scope: [:product_id, :color] },
+    inclusion: { in: %w[S M L XL XXL] }
 
+  validates :stock_status, presence: true,
+    inclusion: { in: %w[in_stock out_of_stock pre_order] }
+
+  validates :stock_quantity, 
+    numericality: { greater_than_or_equal_to: 0 }
+
+  validates :price, allow_nil: true,
+    numericality: { greater_than: 0 }
+
+  validates :weight, presence: true, 
+    numericality: { greater_than: 0 }
+
+  # Скоупы (scopes)
+  # ...
+  
+  # Коллбэки (callbacks)
   before_save :set_stock_status
 
   # Использовать в контроллере, чтобы указать цену  на конкретный вариант товара.
