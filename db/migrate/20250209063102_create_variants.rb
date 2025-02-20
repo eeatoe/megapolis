@@ -17,10 +17,10 @@ class CreateVariants < ActiveRecord::Migration[7.1]
       t.text :size, null: false
       t.float :weight
 
+      # t.index :product_id, unique: true
+
       t.timestamps
     end
-
-    add_index :variants, :product_id, unique: true
 
     # Ограничение на минимальную цену
     execute <<-SQL
@@ -34,7 +34,7 @@ class CreateVariants < ActiveRecord::Migration[7.1]
 
     # Ограничение на возможные размеры одежды
     execute <<-SQL
-      ALTER TABLE variants ADD CONSTRAINT size_check CHECK (size IN ("S", "M", "L", "XL", "XXL"))
+      ALTER TABLE variants ADD CONSTRAINT size_check CHECK (size IN ('S', 'M', 'L', 'XL', 'XXL'))
     SQL
 
   end

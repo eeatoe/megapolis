@@ -3,20 +3,16 @@ class CreateProducts < ActiveRecord::Migration[7.1]
     create_table :products do |t|
       t.string :name, null: false
       t.text :description, null: false
-      t.integer :base_price, null: false, check: "base_price > 0"
+      t.integer :base_price, null: false
 
       # Общие параметры товара
       t.text :main_material, null: false
       t.text :filling_material
 
-      # Теги и категории для фильтрации и поиска товаров
-      t.references :category, null: false, foreign_key: true
-      t.references :brand, foreign_key: true
+      t.index :name
 
       t.timestamps
     end
-
-    add_index :products, :name, unique: true
 
     # Ограничение на минимальную цену
     execute <<-SQL
