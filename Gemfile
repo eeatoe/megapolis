@@ -60,6 +60,12 @@ group :development, :test do
   # factory_bot_rails provides integration between factory_bot and rails 5.0 or newer
   gem "factory_bot_rails"
 
+  # Faker, a port of Data::Faker from Perl, is used to easily generate fake data: names, addresses, phone numbers, etc.
+  gem "faker"
+
+  # Shoulda Matchers provides RSpec- and Minitest-compatible one-liners to test common Rails functionality that, if written by hand, would be much longer, more complex, and error-prone.
+  gem "shoulda-matchers", "~> 6.0"
+
   # Runs your tests in a random timezone
   # gem "zonebie", "~> 0.6.1"
 end

@@ -8,6 +8,8 @@ Bundler.require(*Rails.groups)
 
 module Megapolis
   class Application < Rails::Application
+    config.i18n.default_locale = :ru
+    
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.1
 
