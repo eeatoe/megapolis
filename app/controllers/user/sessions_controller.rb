@@ -1,4 +1,8 @@
 class User::SessionsController < ApplicationController
+
+  def new
+  end
+
   def create
     result = User::SessionService.call(params)
 

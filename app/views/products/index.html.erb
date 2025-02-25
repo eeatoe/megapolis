@@ -2,12 +2,14 @@
     <div class="max-w-screen-xl mx-auto px-4 py-3 text-white sm:text-center md:px-8">
         <p class="font-secondary font-medium">
             Зарегистрируйся и получи скидку 10% на первую покупку!
-            <%= link_to "Зарегистрироваться", root_path, class: "font-secondary font-semibold underline duration-150 hover:text-teal-400 inline-flex items-center gap-x-1" %>
-            </a>
+            <%= button_to login_path, method: :post, class: "font-secondary font-semibold underline duration-150 hover:text-teal-400 inline-flex items-center gap-x-1" do %>
+                <span>Зарегистрироваться</span>
+            <% end %>
         </p>
     </div>
 </div>
 
+<%= render NavbarComponent.new(user: current_user) %>
 
 
 <h1 class="font-primary  text-primaryElement  text-3xl">НАЙДИТЕ ОДЕЖДУ, СООТВЕТСТВУЮЩУЮ ВАШЕМУ СТИЛЮ</h1>

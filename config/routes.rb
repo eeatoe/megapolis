@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resource :profile, only: [:show, :update, :destroy]
     resource :registration, only: [:create]
     resource :session, only: [:create, :destroy]
+    get "/login", to: "sessions#new", as: "login"
     
     resource :password, only: [] do
       collection do
