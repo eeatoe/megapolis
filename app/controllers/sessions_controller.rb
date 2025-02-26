@@ -1,16 +1,15 @@
-class User::SessionsController < ApplicationController
-
+class SessionsController < ApplicationController
   def new
   end
 
   def create
-    result = User::SessionService.call(params)
+    user = User.find_by(email: params[:email])
 
-    if result.success?
-      session[:user_id] = result.user.id
+    if !!@user && @user.authenticate(params[:password])
+      session[:user_id] = user.id
       redirect_to root_path, notice: "Авторизация успешна"
     else
-      flash.now[:alert] = result.errors.join(", ")
+      flash[:alert] = 'Invalid email or password'
       render :new, status: :unprocessable_entity
     end
   end

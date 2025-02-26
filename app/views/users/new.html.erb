@@ -1,0 +1,60 @@
+<div class="flex h-screen flex-col justify-center items-center px-6 py-12 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+    <h2 class="mt-10 font-primary text-center text-3xl/9 font-bold tracking-tight text-gray-900">Создайте аккаунт</h2>
+  </div>
+
+  <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+    <%= form_with model: @user, url: users_path, method: :post, local: true, class: "space-y-6" do |form| %>
+      <!-- Поле Name -->
+      <div>
+        <%= form.label :name, "Имя", class: "block text-sm font-secondary text-secondary-element font-medium text-gray-900" %>
+        <div class="mt-2">
+          <%= form.text_field :name, placeholder: "Твое имя", class: "block w-full h-13 px-6 font-secondary rounded-full bg-border text-base text-gray-900 placeholder:text-gray-400 focus:outline-none focus:text-teal-600 hover:text-teal-600", required: true %>
+        </div>
+      </div>
+
+      <!-- Поле Email -->
+      <div>
+        <%= form.label :email, "Email адрес", class: "block text-sm font-secondary text-secondary-element font-medium text-gray-900" %>
+        <div class="mt-2">
+          <%= form.email_field :email, placeholder: "example@gmail.com", class: "block w-full h-13 px-6 font-secondary rounded-full bg-border text-base text-gray-900 placeholder:text-gray-400 focus:outline-none focus:text-teal-600 hover:text-teal-600", required: true %>
+        </div>
+      </div>
+
+      <!-- Поле Password -->
+      <div>
+        <div class="flex items-center justify-between">
+          <%= form.label :password, "Пароль", class: "block text-sm font-secondary text-secondary-element font-medium text-gray-900" %>
+        </div>
+        <div class="mt-2">
+          <%= form.password_field :password, placeholder: "145F2!k47", class: "block w-full h-13 px-6 font-secondary rounded-full bg-border text-base text-gray-900 placeholder:text-gray-400 focus:outline-none focus:text-teal-600 hover:text-teal-600", required: true %>
+        </div>
+      </div>
+
+      <!-- Поле Password Confirmation -->
+      <div>
+        <div class="flex items-center justify-between">
+          <%= form.label :password_confirmation, "Повторите пароль", class: "block text-sm font-secondary text-secondary-element font-medium text-gray-900" %>
+        </div>
+        <div class="mt-2">
+          <%= form.password_field :password_confirmation, placeholder: "145F2!k47", class: "block w-full h-13 px-6 font-secondary rounded-full bg-border text-base text-gray-900 placeholder:text-gray-400 focus:outline-none focus:text-teal-600 hover:text-teal-600", required: true %>
+        </div>
+      </div>
+
+      <!-- Кнопка Register -->
+      <div>
+        <%= form.submit "Зарегистрироваться", class: "flex items-center justify-center noise w-full h-15 px-6 rounded-full bg-primary-element text-lg/6 font-bold text-white shadow-xs hover:bg-teal-400" %>
+      </div>
+    <% end %>
+
+    <p class="my-6 font-secondary text-center text-sm/6 text-gray-500">
+      Есть аккаунт?
+      <%= link_to "Войти", new_session_path, class: "font-bold font-secondary text-teal-400 hover:text-teal-300" %>
+    </p>
+  </div>
+
+  <!-- Отображение ошибок -->
+  <div class="sm:max-w-sm">
+    <%= render "shared/error_messages", object: @user %>
+  </div>
+</div>

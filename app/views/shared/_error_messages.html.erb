@@ -1,0 +1,10 @@
+<% if object.present? && object.errors.any? %>
+  <div class="mb-4 rounded-3xl bg-red-100 p-4 text-red-600">
+    <h2 class="font-bold">Ошибки:</h2>
+    <ul class="mt-2 list-disc list-inside">
+      <% object.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

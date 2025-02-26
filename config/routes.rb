@@ -10,20 +10,11 @@ Rails.application.routes.draw do
     delete "remove/:product_id", to: "carts#remove_item", as: "remove"
   end
 
+  resources :users, only: [:new, :create, :edit, :update, :show, :destroy]
+  resources :sessions, only: [:new, :create, :destroy]
+
   # Маршруты для пользователей (регистрация, вход, профиль)
-  scope module: "user" do
-    resource :profile, only: [:show, :update, :destroy]
-    resource :registration, only: [:create]
-    resource :session, only: [:create, :destroy]
-    get "/login", to: "sessions#new", as: "login"
-    
-    resource :password, only: [] do
-      collection do
-        post :reset
-        post :update
-      end
-    end
-  end
+
 
   # Форма оформления заказа
   resources :orders, only: [:new, :create, :show] 
