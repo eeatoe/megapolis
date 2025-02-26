@@ -5,31 +5,31 @@
 
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
     <!-- Форма входа -->
-    <%= form_with url: sessions_path, class: "space-y-6" do |f| %>
+    <%= form_with model: @user, url: sessions_path, method: :post, local: true, class: "space-y-6" do |form| %>
       <!-- Поле Email -->
       <div>
-        <%= f.label :email, "Email адрес", class: "block text-sm font-secondary text-secondary-element font-medium text-gray-900" %>
+        <%= form.label :email, "Email адрес", class: "block text-sm font-secondary text-secondary-element font-medium text-gray-900" %>
         <div class="mt-2">
-          <%= f.email_field :email, placeholder: "example@gmail.com", class: "block w-full h-13 px-6 font-secondary rounded-full bg-border text-base text-gray-900 placeholder:text-gray-400 focus:outline-none focus:text-teal-600 hover:text-teal-600", autocomplete: "email", required: true %>
+          <%= form.email_field :email, placeholder: "example@gmail.com", class: "block w-full h-12 px-6 font-secondary rounded-full bg-border text-base text-gray-900 placeholder:text-gray-400 focus:outline-none focus:text-teal-600 hover:text-teal-600", autocomplete: "email", required: true %>
         </div>
       </div>
 
       <!-- Поле Password -->
       <div>
         <div class="flex items-center justify-between">
-          <%= f.label :password, "Пароль", class: "block text-sm font-secondary text-secondary-element font-medium text-gray-900" %>
+          <%= form.label :password, "Пароль", class: "block text-sm font-secondary text-secondary-element font-medium text-gray-900" %>
           <div class="text-sm">
             <%= link_to "Забыли пароль?", "#", class: "font-secondary font-bold text-teal-400 hover:text-teal-300" %>
           </div>
         </div>
         <div class="mt-2">
-          <%= f.password_field :password, placeholder: "••••••••", class: "block w-full h-13 px-6 font-secondary rounded-full bg-border text-base text-gray-900 placeholder:text-gray-400 focus:outline-none focus:text-teal-600 hover:text-teal-600", autocomplete: "current-password", required: true %>
+          <%= form.password_field :password, placeholder: "••••••••", class: "block w-full h-12 px-6 font-secondary rounded-full bg-border text-base text-gray-900 placeholder:text-gray-400 focus:outline-none focus:text-teal-600 hover:text-teal-600", autocomplete: "current-password", required: true %>
         </div>
       </div>
 
       <!-- Кнопка Login -->
       <div>
-        <%= f.submit "Войти", class: "flex items-center justify-center noise w-full h-15 px-6 rounded-full bg-primary-element text-lg/6 font-bold text-white shadow-xs hover:bg-teal-400" %>
+        <%= form.submit "Войти", class: "flex items-center justify-center noise w-full h-12 px-6 rounded-full bg-primary-element text-lg/6 font-bold text-white shadow-xs hover:bg-teal-400" %>
       </div>
     <% end %>
 
@@ -41,6 +41,6 @@
     </p>
   </div>
 
-  <!-- Вывод ошибок -->
-  <%= render "shared/error_messages", object: @user %>
+  <!-- Отображение ошибки -->
+  <%= render "shared/flash_error_message" %>
 </div>

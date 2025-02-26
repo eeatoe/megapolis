@@ -1,11 +1,13 @@
-<nav class="flex justify-between items-center py-4 bg-white shadow-md">
+<nav class="flex justify-between items-center py-4 bg-white xl:rounded-b-3xl shadow-md">
   <!-- Логотип -->
-  <a href="/" class="font-primary px-8 text-2xl font-extrabold">MEGAPOLIS</a>
+  <a href="/" class="font-primary px-8 text-2xl font-extrabold select-none">MEGAPOLIS</a>
 
   <!-- Разделы для навигации -->
   <div class="flex items-center px-8 gap-x-4">
+
+    <!-- Начало кода для раздела каталог -->
     <div class="relative">
-      <button class="arrow-rotate-button font-secondary font-normal px-4 py-2 rounded hover:text-teal-600 inline-flex items-center">
+      <button class="arrow-rotate-button font-secondary font-normal px-4 py-2 rounded hover:text-teal-600 inline-flex items-center select-none">
         Каталог
         <!-- Значек стрелки -->
         <span class="ml-1 transform transition-transform duration-200 ease-in-out" id="arrow">
@@ -19,12 +21,14 @@
         <a href="/category/2" class="block px-4 py-2 hover:bg-gray-100">Категория 2</a>
       </div>
     </div>
-    <a href="/new-arrivals" class="font-secondary font-light px-4 py-2 hover:text-teal-600 whitespace-nowrap">Новое поступление</a>
-    <a href="/brands" class="font-secondary font-light px-4 py-2 hover:text-teal-600 whitespace-nowrap">Бренды</a>
+    <!-- Конец кода для раздела каталог -->
+
+    <a href="/new-arrivals" class="font-secondary font-light px-4 py-2 hover:text-teal-600 whitespace-nowrap select-none">Новое поступление</a>
+    <a href="/brands" class="font-secondary font-light px-4 py-2 hover:text-teal-600 whitespace-nowrap select-none">Бренды</a>
   </div>
 
   <!-- Поле поиска -->
-  <div class="relative px-8 w-full y-full">
+  <div class="relative px-8 w-full y-full select-none">
     <!-- Значек лупы -->
     <span class="absolute inset-y-0 left-8 flex items-center pl-3 pointer-events-none mr-2">
       <svg class="stroke-current ml-1 w-4.5 h-4.5" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -43,12 +47,16 @@
       </svg>
     </span>
     <% if @user %>
-      <a href="/profile" class="text-xl">👤</a>
+      <svg class="stroke-current ml-1 w-8 h-8 hover:stroke-teal-600" viewBox="0 0 24 24" fill="none"  xmlns="http://www.w3.org/2000/svg">
+        <path stroke-width="1.6" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
     <% else %>
-      <%= button_to new_session_path, class: "font-secondary px-4 py-2 bg-primary-element noise text-white rounded-full hover:bg-teal-600" do %>
+      <%= button_to new_session_path, method: :get, class: "font-secondary px-4 py-2 bg-primary-element noise text-white rounded-full hover:bg-teal-600" do %>
         Войти
       <% end %>
     <% end %>
   </div>
 
 </nav>
+
+

@@ -11,5 +11,47 @@
 
 <%= render NavbarComponent.new(user: current_user) %>
 
+<!-- Приветственная часть -->
+<div class="flex flex-row items-center flex-nowrap place-content-between h-[75vh]">
+    <div class="p-12 flex-1 min-w-0">
+        <!-- Текст -->
+        <h1 class="pb-6 font-primary text-primaryElement text-5xl font-black">НАЙДИТЕ ОДЕЖДУ, СООТВЕТСТВУЮЩУЮ ВАШЕМУ СТИЛЮ</h1>
+        <h2 class="py-10 font-secondry text-secondaryElement text-xl font-light">
+            Погрузитесь в наш широкий ассортимент уникальных изделий, каждое из которых создано с заботой о деталях, чтобы подчеркнуть вашу индивидуальность и стать выражением вашего стиля.
+        </h2>
 
-<h1 class="font-primary  text-primaryElement  text-3xl">НАЙДИТЕ ОДЕЖДУ, СООТВЕТСТВУЮЩУЮ ВАШЕМУ СТИЛЮ</h1>
+        <!-- Кнопка -->
+        <%= button_to root_path, class: "py-4 flex items-center justify-center noise h-14 px-12 rounded-full bg-primary-element text-lg/6 font-bold text-white shadow-xs hover:bg-teal-400 select-none" do %>
+            Каталог
+        <% end %>
+
+        <!-- Достижения -->
+        <div class="mt-12 pt-10">
+            <ul class="flex flex-col items-center justify-left gap-y-8 flex-row lg:divide-x divide-border">
+                <li class="text-left pr-8 md:pr-12">
+                    <h4 class="text-5xl text-primary-element font-bold">200+</h4>
+                    <p class="mt-2 text-lg text-secondary-element ">Брендов</p>
+                </li>
+                <li class="text-left px-8 md:px-12">
+                    <h4 class="text-5xl text-primary-element font-bold">2,000+</h4>
+                    <p class="mt-2 text-lg text-secondary-element">Продуктов</p>
+                </li>
+                <li class="text-left pl-8 md:pl-12">
+                    <h4 class="text-5xl text-primary-element font-bold">10,000+</h4>
+                    <p class="mt-2 text-lg text-secondary-element">Покупателей</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <%= image_tag 'main_photo.png', class: 'h-full w-auto object-cover select-none' %>
+</div>
+
+<!-- Лента брендов -->
+<div class="flex flex-row sm:flex-wrap gap-8 px-12 justify-between min-h-[8vh] h-auto bg-primary-element rounded-3xl">
+    <% ['versace', 'zara', 'gucci', 'prada', 'calvin-klein'].each do |brand| %>
+        <%= image_tag "#{brand}-logo.png", class: "max-h-full max-w-[120px] object-contain" %>
+    <% end %>
+</div>
+
+<!-- Часть "Новое поступление" -->
+<h1 class="pt-20 pb-14 font-primary text-primaryElement flex justify-center text-5xl font-black">Новое поступление</h1>
