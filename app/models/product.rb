@@ -24,4 +24,16 @@ class Product < ApplicationRecord
     validates :filling_material, 
     format: { with: Constants::ALPHANUMERIC_NAME_FORMAT },
     length: { maximum: 50 }
+
+  # Коллбэки (callbacks)
+  before_save :set_image_path
+
+  private
+
+  def set_image_path
+    self.image.each do |image|
+      image_path = "products/#{category.slug}/#{id}/#{image.filename}"
+      image.filename = image_path
+    end
+  end
 end

@@ -10,11 +10,9 @@ Rails.application.routes.draw do
     delete "remove/:product_id", to: "carts#remove_item", as: "remove"
   end
 
+  # Маршруты для пользователей (регистрация, вход, профиль)
   resources :users, only: [:new, :create, :edit, :update, :show, :destroy]
   resources :sessions, only: [:new, :create, :destroy]
-
-  # Маршруты для пользователей (регистрация, вход, профиль)
-
 
   # Форма оформления заказа
   resources :orders, only: [:new, :create, :show] 
