@@ -3,7 +3,8 @@ class CreateProducts < ActiveRecord::Migration[7.1]
     create_table :products do |t|
       t.string :name, null: false
       t.text :description, null: false
-      t.integer :base_price, null: false
+      t.decimal :base_price, precision: 10, scale: 2, null: false
+      t.float :average_rating, default: 0, null: false
 
       # Общие параметры товара
       t.text :main_material, null: false

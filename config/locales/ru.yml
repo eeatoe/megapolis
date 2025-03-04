@@ -1,6 +1,4 @@
 ru:
-  hello: "Привет, мир!"
-
   activerecord:
     attributes:
       user:
@@ -8,6 +6,7 @@ ru:
         email: "Email"
         password: "Пароль"
         password_confirmation: "Подтверждение пароля"
+
     errors:
       models:
         user:
@@ -54,6 +53,14 @@ ru:
               invalid: "Название вида наполнителя может состоять из букв, цифр и разрешенных символов"
               too_long: "Название вида наполнителя должно быть меньше %{count} символов"
 
+        product_rating:
+          attributes:
+            value:
+              blank: "должно быть заполненным"
+              inclusion: "может быть только от 1 до 5"
+            product_id:
+              uniqueness: "уже существует"
+
         variant:
           attributes:
             color:
@@ -73,3 +80,37 @@ ru:
             weight:
               blank: "Поле с весом товара должно быть заполненным"
               greater_than: "Вес товара должен быть положительным"
+        
+        category:
+          attributes:
+            name:
+              blank: "должно быть заполненным"
+              taken: "уже занят"
+              format: "должно состоять только из букв, пробелов, апострофов и дефисов"
+            slug:
+              blank: "не может быть пустым"
+              taken: "уже занят"
+  
+  signup:
+    success:
+      create: "Вы успешно зарегистрировались"
+
+  login:
+    success:
+      create: "Вы успешно вошли в систему"
+      destroy: "Вы успешно вышли из системы"
+    error:
+      create:
+        missing: "Пользователь с таким email не найден"
+        wrong_password: "Неверный пароль"
+
+  rating_product:
+    success:
+      create: "Спасибо за вашу оценку!"
+      update: "Ваша оценка обновлена!"
+      destroy: "Оценка успешно удалена!"
+    error:
+      create: "Не удалось сохранить оценку"
+      update: "Не удалось обновить оценку"
+      destroy: "Не удалось удалить оценку"
+  

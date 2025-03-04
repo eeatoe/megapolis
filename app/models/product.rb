@@ -3,6 +3,7 @@ class Product < ApplicationRecord
   belongs_to :category
   belongs_to :brand, optional: true 
   has_many :variants, dependent: :destroy
+  has_many :product_ratings, dependent: :destroy
   has_many_attached :images, dependent: :purge # Active Storage
 
   # Валидации (validations)
@@ -26,7 +27,11 @@ class Product < ApplicationRecord
     length: { maximum: 50 }
 
   # Коллбэки (callbacks)
-  before_save :set_image_path
+  # before_save :set_image_path
+
+  def average_rating
+    self[:average_rating] || 0
+  end
 
   private
 

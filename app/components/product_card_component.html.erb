@@ -1,0 +1,27 @@
+<div class="overflow-hidden">
+  <!-- Контейнер для изображения -->
+  <div class="w-full rounded-3xl shadow-2xs aspect-square overflow-hidden">
+    <% if @product.images.attached? %>
+      <%= image_tag @product.images.first, class: "w-full h-full object-cover" %>
+    <% else %>
+      <div class="w-full h-full bg-gray-200 flex items-center justify-center">
+        <span class="text-gray-500">No image</span>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Информация о товаре -->
+  <div class="py-4">
+    <h3 class="text-lg font-secondary font-bold mb-2"><%= @product.name %></h3>
+    
+    <!-- Оценка товара -->
+    <div class="ml-[-3px]">
+      <%= render RatingStarsComponent.new(average_rating: @product.average_rating) %>
+    </div>
+    
+    <!-- Цена -->
+    <div class="flex items-center justify-between">
+      <span class="text-lg font-bold text-teal-600"><%= number_to_currency(@product.base_price) %></span>
+    </div>
+  </div>
+</div>

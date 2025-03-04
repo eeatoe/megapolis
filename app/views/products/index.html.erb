@@ -9,7 +9,7 @@
     </div>
 </div>
 
-<%= render NavbarComponent.new(user: current_user) %>
+<%= render NavbarComponent.new(user: current_user, categories: @categories) %>
 
 <!-- Приветственная часть -->
 <div class="flex flex-row items-center flex-nowrap place-content-between h-[75vh]">
@@ -21,7 +21,7 @@
         </h2>
 
         <!-- Кнопка -->
-        <%= button_to root_path, class: "py-4 flex items-center justify-center noise h-14 px-12 rounded-full bg-primary-element text-lg/6 font-bold text-white shadow-xs hover:bg-teal-400 select-none" do %>
+        <%= button_to root_path, class: "py-4 flex items-center justify-center noise h-14 px-12 rounded-full bg-primary-element text-lg/6 font-bold text-white shadow-xs hover:text-teal-300 select-none" do %>
             Каталог
         <% end %>
 
@@ -49,9 +49,17 @@
 <!-- Лента брендов -->
 <div class="flex flex-row sm:flex-wrap gap-8 px-12 justify-between min-h-[8vh] h-auto bg-primary-element rounded-3xl">
     <% ['versace', 'zara', 'gucci', 'prada', 'calvin-klein'].each do |brand| %>
-        <%= image_tag "#{brand}-logo.png", class: "max-h-full max-w-[120px] object-contain" %>
+        <%= image_tag "#{brand}-logo.png", class: "max-h-full max-w-[120px] object-contain select-none" %>
     <% end %>
 </div>
 
 <!-- Часть "Новое поступление" -->
 <h1 class="pt-20 pb-14 font-primary text-primaryElement flex justify-center text-5xl font-black">Новое поступление</h1>
+
+<div class="container mx-auto px-4 py-8">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <% @products.each do |product| %>
+      <%= render ProductCardComponent.new(product: product) %>
+    <% end %>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 class Brand < ApplicationRecord
-  include SlugGenerator
+  include SlugGeneratable
 
   # Связи (associations)
   has_many :products, dependent: :nullify

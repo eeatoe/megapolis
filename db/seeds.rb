@@ -16,7 +16,8 @@ BRANDS = [
   "New Balance",
   "Adidas",
   "Prada",
-  "Gucci"
+  "Gucci",
+  "Nike"
 ]
 
 BRANDS.each do |brand_name|
@@ -37,23 +38,52 @@ end
 # <-------------------------->
 
 # Создаём основные категории
-clothing = Category.find_or_create_by!(name: "Одежда")
+outerwear = Category.find_or_create_by!(name: "Верхняя одежда")
+trousers = Category.find_or_create_by!(name: "Брюки")
 accessories = Category.find_or_create_by!(name: "Аксессуары")
 
 # Создаём подкатегории
-Category.find_or_create_by!(name: "Футболки", parent: clothing)
-Category.find_or_create_by!(name: "Толстовки", parent: clothing)
-Category.find_or_create_by!(name: "Куртки", parent: clothing)
+Category.find_or_create_by!(name: "Футболки", parent: outerwear)
+Category.find_or_create_by!(name: "Толстовки", parent: outerwear)
+Category.find_or_create_by!(name: "Куртки", parent: outerwear)
+
+Category.find_or_create_by!(name: "Джинсы", parent: trousers)
+Category.find_or_create_by!(name: "Спортивные брюки", parent: trousers)
+Category.find_or_create_by!(name: "Джогеры", parent: trousers)
 
 Category.find_or_create_by!(name: "Сумки", parent: accessories)
 Category.find_or_create_by!(name: "Ремни", parent: accessories)
 Category.find_or_create_by!(name: "Очки", parent: accessories)
 
+# <------------------------------->
+# Добовление тестовых пользователей
+# <------------------------------->
+
+first_user = User.find_by(email: "eeeatoe@example.com")
+unless first_user
+  first_user = User.create!(
+    name: "Sergey", 
+    email: "eeeatoe@example.com", 
+    password: "123A3!hrT", 
+    password_confirmation: "123A3!hrT"
+  )
+end
+
+second_user = User.find_by(email: "hexatoe@example.com")
+unless second_user
+  second_user = User.create!(
+    name: "Аня", 
+    email: "hexatoe@example.com", 
+    password: "123A3!hrT", 
+    password_confirmation: "123A3!hrT"
+  )
+end
+
 # <--------------------------->
 # Добовление тестовых Продуктов
 # <--------------------------->
 
-Product.find_or_create_by!(
+first_product = Product.find_or_create_by!(
   name: "Мужская спортивная куртка с утеплителем для холодной погоды",
   description: "Эта куртка обеспечит комфорт и защиту в холодные дни. Ветрозащитная ткань, удобный капюшон и стильный крой делают её идеальным выбором для активного отдыха.",
   base_price: 5990.00,
@@ -61,4 +91,16 @@ Product.find_or_create_by!(
   filling_material: "Синтепон",
   category: Category.find_by(name: "Куртки"),
   brand: Brand.find_by(name: "Nike")
+)
+
+ProductRating.find_or_create_by!(
+  product: first_product,
+  user: first_user,
+  value: 4
+)
+
+ProductRating.find_or_create_by!(
+  product: first_product,
+  user: second_user,
+  value: 3
 )

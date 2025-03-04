@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_path, notice: "Регистрация успешна"
+      redirect_to root_path, notice: I18n.t("signup.success.create")
     else
       flash.now[:error] = @user.errors.full_messages.join(". ")
       render :new, status: :unprocessable_entity
