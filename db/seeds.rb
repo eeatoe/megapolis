@@ -104,3 +104,15 @@ ProductRating.find_or_create_by!(
   user: second_user,
   value: 3
 )
+
+# <--------------------------->
+
+first_product = Product.find_or_create_by!(
+  name: "Мужская спортивная куртка с легким дышащим материалом для разных сезонов",
+  description: "Эта куртка идеально подойдет для меняющейся осенней и весенней погоды. Она надежно защищает от ветра и дождя, при этом сохраняет комфорт и удобство.",
+  base_price: 7990.00,
+  main_material: "Полиэстер",
+  filling_material: "Синтепон",
+  category: Category.find_by(name: "Куртки"),
+  brand: Brand.find_by(name: "Adidas")
+)

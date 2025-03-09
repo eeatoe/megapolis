@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def new
-    # Отображаем форму
-    @user = User.new
+    redirect_to root_path if logged_in?
+    @user = User.new # Отображаем форму
   end
 
   def create

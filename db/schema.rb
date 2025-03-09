@@ -98,7 +98,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_04_020833) do
     t.string "name", null: false
     t.text "description", null: false
     t.decimal "base_price", precision: 10, scale: 2, null: false
-    t.float "average_rating", default: 0.0, null: false
+    t.float "average_rating"
     t.text "main_material", null: false
     t.text "filling_material"
     t.datetime "created_at", null: false

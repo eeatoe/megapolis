@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user!
     unless logged_in?
-      redirect_to session_path, alert: "Пожалуйста, войдите в систему для доступа к этому разделу"
+      redirect_to session_path, alert: I18n.t("login.error.authenticate_user!")
     end
   end
 

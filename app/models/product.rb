@@ -29,8 +29,11 @@ class Product < ApplicationRecord
   # Коллбэки (callbacks)
   # before_save :set_image_path
 
+  # Скоупы (scopes)
+  # scopes :with_max_sales, { where(sales_count: maximum(:sales_count)) }
+
   def average_rating
-    self[:average_rating] || 0
+    self[:average_rating]
   end
 
   private

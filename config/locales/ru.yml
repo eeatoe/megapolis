@@ -1,4 +1,12 @@
 ru:
+  number:
+    currency:
+      format:
+        unit: "₽"
+        format: "%n %u"
+        separator: ","
+        delimiter: " "
+
   activerecord:
     attributes:
       user:
@@ -100,6 +108,7 @@ ru:
       create: "Вы успешно вошли в систему"
       destroy: "Вы успешно вышли из системы"
     error:
+      authenticate_user!: "Пожалуйста, войдите в систему для доступа к этому разделу"
       create:
         missing: "Пользователь с таким email не найден"
         wrong_password: "Неверный пароль"

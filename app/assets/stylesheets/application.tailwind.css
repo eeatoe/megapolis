@@ -1,13 +1,13 @@
 /* Импорт шрифтов */
 @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap');
 
 @import "tailwindcss";
 
-/* Добовление стилей к Tailwind */
+/* Добовление переменных к Tailwind */
 @theme {
     --font-primary: "Unbounded", sans-serif;
-    --font-secondary: "Raleway", sans-serif;
+    --font-secondary: "Golos Text", sans-serif;
 
     --color-background: rgb(1, 1, 1);
     --color-primary-element: rgb(0, 0, 0);
@@ -15,6 +15,102 @@
     --color-border: rgba(0, 0, 0, 0.1);
     --color-contrast: #3182CE;
 }
+
+/* Добовление базовых стилей к элементам html с Tailwind */
+@layer base {
+    h1 {
+        font-size: var(--text-2xl);
+    }
+    h2 {
+        font-size: var(--text-xl);
+    }
+}
+
+@layer components {
+    .btn-primary {
+        /* Общие кастомные стили */
+        font-family: var(--font-secondary);
+
+        @apply
+            /* Позиционирование и выравнивание */
+            flex items-center justify-center 
+
+            /* Отступы и размеры */
+            /* px-12 py-4 h-14 */
+
+            /* Типография: размер, жирность, цвет текста */
+            font-bold text-white
+
+            /* Фон и оформление */
+            bg-primary-element rounded-full
+
+            /* Тени и взаимодействие */
+            shadow-xs cursor-pointer select-none
+
+            /* Адаптивные стили */
+            sm:text-xs sm:px-8 sm:py-2 sm:h-10   /* На экранах ≥ 640px */
+            md:text-sm md:px-10 md:py-2 md:h-12  /* На экранах ≥ 768px */
+            lg:text-base lg:px-10 lg:py-2 lg:h-12  /* На экранах ≥ 1024px */
+            xl:text-lg xl:px-12 xl:py-4 xl:h-14  /* На экранах ≥ 1280px */
+            2xl:text-lg 2xl:px-14 2xl:py-4 2xl:h-16 /* На экранах ≥ 1536px */
+
+            /* Состояние hover */
+            hover:text-teal-300;
+    }
+
+    .btn-outline {
+        @apply
+            /* Позиционирование и выравнивание */
+            flex items-center justify-center 
+
+            /* Типография: размер, жирность, цвет текста */
+            font-medium text-primary-element border-secondary-element
+
+            /* Фон и оформление */
+            bg-transparent border-2 rounded-full
+
+            /* Тени и взаимодействие */
+            shadow-xs cursor-pointer select-none
+
+            /* Адаптивные стили */
+            sm:text-base sm:px-10 sm:py-2 sm:h-12   /* На экранах ≥ 640px */
+            md:text-base md:px-10 md:py-2 md:h-12  /* На экранах ≥ 768px */
+            lg:text-base lg:px-10 lg:py-2 lg:h-12  /* На экранах ≥ 1024px */
+            xl:text-lg xl:px-12 xl:py-4 xl:h-14  /* На экранах ≥ 1280px */
+            2xl:text-lg 2xl:px-12 2xl:py-4 2xl:h-16 /* На экранах ≥ 1536px */
+
+            /* Состояние hover */
+            hover:border-teal-800 hover:text-teal-600;
+    }
+}
+
+/*
+@layer components {
+    .btn-primary {
+        font-family: var(--font-secondary);
+        color: var(--color-white);
+        font-size: var(--text-lg);
+        font-weight: var(--font-bold);
+
+        display: flex;
+        justify-items: center;
+        justify-content: center;
+        
+        background-color: var(--color-primary-element);
+        padding: var(--space-4) var(--space-12);
+        border-radius: var(--rounded-full);
+        height: var(--space-14);
+
+        cursor: pointer;
+        user-select: none;
+        box-shadow: var(--shadow-xs);
+
+        &:hover {
+            color: var(--color-teal-300);
+        }
+    }
+}
+*/
 
 /* Свои стили */
 
