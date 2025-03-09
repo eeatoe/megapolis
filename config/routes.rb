@@ -11,18 +11,8 @@ Rails.application.routes.draw do
   end
 
   # Маршруты для пользователей (регистрация, вход, профиль)
-  scope module: "user" do
-    resource :profile, only: [:show, :update, :destroy]
-    resource :registration, only: [:create]
-    resource :session, only: [:create, :destroy]
-    
-    resource :password, only: [] do
-      collection do
-        post :reset
-        post :update
-      end
-    end
-  end
+  resources :users, only: [:new, :create, :edit, :update, :show, :destroy]
+  resources :sessions, only: [:new, :create, :destroy]
 
   # Форма оформления заказа
   resources :orders, only: [:new, :create, :show] 

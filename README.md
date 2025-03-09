@@ -1,24 +1,28 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# MEGAPOLIS
 
-Things you may want to cover:
+Простой интернет магазин, предназначенный для удобных онлайн-покупок вещей. Упор сделан на быстрый, удобный и функциональный интерфейс.
 
-* Ruby version
 
-* System dependencies
+## Требования
 
-* Configuration
+- Ruby 3.3.0
+- Rails 7.1
+- PostgreSQL
+- NodeJS
+- yarn или npx
 
-* Database creation
 
-* Database initialization
+## Установка
 
-* How to run the test suite
+1. `git clone git@github.com:eeatoe/megapolis.git`
+2. `cd /megapolis`
+3. `bundle && yarn`
+4. `rails db:create db:migrate db:seed`
+5. `./bin/dev`
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+## Использование
 
-* ...
+В этом разделе скорее написанны текущие реализованные пути пользователя по которым можно пройтись сейчас.

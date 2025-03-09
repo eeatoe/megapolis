@@ -3,6 +3,7 @@ class Product < ApplicationRecord
   belongs_to :category
   belongs_to :brand, optional: true 
   has_many :variants, dependent: :destroy
+  has_many :product_ratings, dependent: :destroy
   has_many_attached :images, dependent: :purge # Active Storage
 
   # Валидации (validations)
@@ -24,4 +25,23 @@ class Product < ApplicationRecord
     validates :filling_material, 
     format: { with: Constants::ALPHANUMERIC_NAME_FORMAT },
     length: { maximum: 50 }
+
+  # Коллбэки (callbacks)
+  # before_save :set_image_path
+
+  # Скоупы (scopes)
+  # scopes :with_max_sales, { where(sales_count: maximum(:sales_count)) }
+
+  def average_rating
+    self[:average_rating]
+  end
+
+  private
+
+  def set_image_path
+    self.image.each do |image|
+      image_path = "products/#{category.slug}/#{id}/#{image.filename}"
+      image.filename = image_path
+    end
+  end
 end

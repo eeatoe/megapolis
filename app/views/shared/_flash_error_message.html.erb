@@ -1,0 +1,12 @@
+<!-- Отображает сообщение об ошибке, если оно записано в flash[:error]. -->
+<!-- Использует flash[:error], который сохраняет сообщение до следующего запроса и затем автоматически удаляется. -->
+<!-- flash[:error] чаще используется для глобальных уведомлений -->
+
+<% if flash[:error] %>
+  <div class="my-6 sm:max-w-sm sm:w-full sm:max-w-sm">
+    <div class="mb-4 rounded-3xl bg-red-100 p-4 text-red-600">
+      <h2 class="font-bold">Ошибка:</h2>
+      <li><%= flash[:error] %></li>
+    </div>
+  </div>
+<% end %>

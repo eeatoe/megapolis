@@ -1,0 +1,14 @@
+<!-- Отображает список ошибок валидации для объекта object, если они есть. -->
+<!-- Этот шаблон выводит ошибки, используя object.errors.full_messages. -->
+<!-- Это стандартный механизм ActiveModel в Rails для отображения ошибок валидации модели. -->
+
+<% if object.errors.any? %>
+  <div class="mb-4 rounded-3xl bg-red-100 p-4 text-red-600">
+    <h2 class="font-bold">Ошибки:</h2>
+    <ul class="mt-2 list-disc list-inside">
+      <% object.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

@@ -3,6 +3,8 @@ require 'bcrypt'
 class User < ApplicationRecord
   has_secure_password
 
+  enum role: { customer: 0, admin: 1 }
+
   # Связи (associations)
   has_many :orders
   has_one :cart
@@ -22,11 +24,8 @@ class User < ApplicationRecord
     format: { with: Constants::PASSWORD_FORMAT },
     length: { minimum: 6, maximum: 72 }
 
-  validates :password_confirmation, 
-    presence: true, if: -> { password.present? }
-
   validates :role, presence: true,
-    inclusion: { in: %w(customer admin) }
+    inclusion: { in: roles.keys }
 
   # Скоупы (scopes)
   # ...

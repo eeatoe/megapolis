@@ -1,0 +1,121 @@
+<!-- Баннер для не зарегистрированных пользователей -->
+<% if logged_in? == false %>
+    <div class="bg-primary-element noise">
+        <div class="max-w-screen-xl mx-auto px-4 py-3 text-white sm:text-center md:px-8">
+            <p class="font-secondary font-medium">
+                Зарегистрируйся и получи скидку 10% на первую покупку!
+                <%= link_to new_user_path, method: :post, class: "font-secondary font-semibold underline duration-150 hover:text-teal-400 inline-flex items-center gap-x-1" do %>
+                    Зарегистрироваться
+                <% end %>
+            </p>
+        </div>
+    </div>
+<% end %>
+
+<!-- Navbar -->
+<%= render NavbarComponent.new(user: current_user, categories: @categories) %>
+
+<!-- Приветственная часть -->
+<div class="flex flex-row items-center flex-nowrap place-content-between h-[75vh]">
+    <div class="p-12 flex-1 min-w-0">
+        <!-- Текст -->
+        <h1 class="pb-6 font-primary text-primaryElement text-5xl font-black">НАЙДИТЕ ОДЕЖДУ, СООТВЕТСТВУЮЩУЮ ВАШЕМУ СТИЛЮ</h1>
+        <h2 class="py-10 font-secondary text-secondary-element text-xl font-light">
+            Погрузитесь в наш широкий ассортимент уникальных изделий, каждое из которых создано с заботой о деталях, чтобы подчеркнуть вашу индивидуальность и стать выражением вашего стиля.
+        </h2>
+
+        <!-- Кнопка -->
+        <%= button_to root_path, class: "btn-primary noise" do %>
+            Каталог
+        <% end %>
+
+        <!-- Достижения -->
+        <div class="mt-12 pt-10">
+            <ul class="flex flex-col items-center justify-left gap-y-8 flex-row lg:divide-x divide-border">
+                <li class="text-left pr-8 md:pr-12">
+                    <h4 class="text-5xl text-primary-element font-bold">200+</h4>
+                    <p class="mt-2 text-lg text-secondary-element ">Брендов</p>
+                </li>
+                <li class="text-left px-8 md:px-12">
+                    <h4 class="text-5xl text-primary-element font-bold">2,000+</h4>
+                    <p class="mt-2 text-lg text-secondary-element">Продуктов</p>
+                </li>
+                <li class="text-left pl-8 md:pl-12">
+                    <h4 class="text-5xl text-primary-element font-bold">10,000+</h4>
+                    <p class="mt-2 text-lg text-secondary-element">Покупателей</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <%= image_tag 'main_photo.png', class: 'h-full w-auto object-cover select-none' %>
+</div>
+
+<!-- Лента брендов -->
+<div class="flex flex-row sm:flex-wrap gap-8 px-12 justify-between min-h-[8vh] h-auto bg-primary-element rounded-3xl">
+    <% ['versace', 'zara', 'gucci', 'prada', 'calvin-klein'].each do |brand| %>
+        <%= image_tag "#{brand}-logo.png", class: "max-h-full max-w-[120px] object-contain select-none" %>
+    <% end %>
+</div>
+
+<!-- Часть "Новое поступление" -->
+<h1 class="pt-20 pb-14 font-primary text-primaryElement flex justify-center text-5xl font-black">Новое поступление</h1>
+<div class="container mx-auto px-4 py-8">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <% @products.each do |product| %>
+      <%= render ProductCardComponent.new(product: product) %>
+    <% end %>
+  </div>
+</div>
+
+<div class="flex justify-center justify-items-center pb-16">
+  <%= button_to root_path, class: "btn-outline" do %>
+    Смотреть больше
+  <% end %>
+</div>
+
+<hr class="my-4 border-t border-gray-300">
+
+<!-- Часть "Больше всего продано" -->
+<h1 class="pt-20 pb-14 font-primary text-primary-element flex justify-center text-5xl font-black">Больше всего продано</h1>
+<div class="container mx-auto px-4 py-8">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <% @products.each do |product| %>
+      <%= render ProductCardComponent.new(product: product) %>
+    <% end %>
+  </div>
+</div>
+
+
+<div class="bg-border rounded-3xl h-auto">
+    <h1 class="pt-14 font-primary text-primary-element flex justify-center text-5xl font-black">Найди свой стиль</h1>
+    <!-- Карточки категорий -->
+    <div class="flex items-center justify-center py-16 px-34">
+        <div class="grid grid-cols-5 gap-6">
+            <!-- Стиль Casual -->
+            <div class="col-span-2 w-auto h-90 rounded-3xl overflow-hidden">
+                <%= image_tag 'styles/casual-style.png', class: 'w-full h-auto object-cover object-center select-none' %>
+            </div>
+
+            <!-- Стиль Formal -->
+            <div class="col-span-3 w-auto h-90 rounded-3xl overflow-hidden">
+                <%= image_tag 'styles/formal-style.png', class: 'w-full h-auto object-cover object-right select-none' %>
+            </div>
+            
+
+            <!-- Стиль Party -->
+            <div class="col-span-3 w-auto h-90 rounded-3xl overflow-hidden">
+                <%= image_tag 'styles/party-style.png', class: 'w-full h-auto object-cover object-right select-none' %>
+            </div>
+
+            <!-- Стиль Sport -->
+            <div class="col-span-2 w-auto h-90 rounded-3xl overflow-hidden">
+                <%= image_tag 'styles/sport-style.png', class: 'w-full h-auto object-cover object-center select-none' %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h1 class="pt-20 pb-14 font-primary text-primary-element flex justify-start text-5xl font-black">Отзывы наших покупателей</h1>
+<div class="grid grid-row-1 gap-6">
+
+</div>

@@ -4,7 +4,7 @@ class CreateUsers < ActiveRecord::Migration[7.1]
       t.string :email, null: false
       t.string :password_digest, null: false
       t.string :name, null: false
-      t.string :role, null: false, default: "customer"
+      t.integer :role, null: false, default: 0
 
       t.index :email, unique: true
 
@@ -13,7 +13,7 @@ class CreateUsers < ActiveRecord::Migration[7.1]
 
     # Ограничение на возможные роли пользователя
     execute <<-SQL
-      ALTER TABLE users ADD CONSTRAINT role_check CHECK (role IN ('customer', 'admin'));
+      ALTER TABLE users ADD CONSTRAINT role_check CHECK (role IN (0, 1));
     SQL
 
   end

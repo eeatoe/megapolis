@@ -1,19 +1,18 @@
 {
+  "name": "app",
+  "private": true,
   "packageManager": "yarn@4.6.0+sha512.5383cc12567a95f1d668fbe762dfe0075c595b4bfff433be478dbbe24e05251a8e8c3eb992a986667c1d53b6c3a9c85b8398c35a960587fbd9fa3a0915406728",
   "devDependencies": {
-    "autoprefixer": "^10.4.20",
-    "esbuild": "^0.25.0",
-    "postcss": "^8.5.3",
-    "postcss-cli": "^11.0.0",
-    "tailwindcss": "^4.0.7"
+    "esbuild": "^0.25.0"
   },
   "scripts": {
-    "build": "node esbuild.config.js",
-    "build:css": "tailwindcss --postcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css"
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",
+    "build:css": "npx @tailwindcss/cli -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^8.0.12",
-    "chokidar": "^4.0.3"
+    "@tailwindcss/cli": "^4.0.8",
+    "tailwindcss": "^4.0.8"
   }
 }
