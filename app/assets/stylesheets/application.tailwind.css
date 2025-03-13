@@ -18,7 +18,6 @@
 │ 3xl          │ Ультраширокие (21:9)   │ ≥ 2560px      │
 └──────────────┴────────────────────────┴───────────────┘*/
 
-/* Добовление переменных к Tailwind */
 @theme {
     /* Кастомные breakpoint-ы */
     --breakpoint-2xl: 120rem;
@@ -28,124 +27,171 @@
     --font-primary: "Unbounded", sans-serif;
     --font-secondary: "Golos Text", sans-serif;
 
-    /* Кастомные Цвета */
+    /* Цвет для фона */
+    --color-snow: oklch(97.26% 0.0026 106.45);
+
+    /* Темные-зеленые цвета для элементов */
+    --color-rock-50: oklch(99.94% 0.0026 106.447); 
+    --color-rock-100: oklch(90.82% 0.0150 115.06);
+    --color-rock-200: oklch(81.71% 0.0195 116.66); /* Цвет рамок (линий) */
+    --color-rock-300: oklch(66.35% 0.0191 117.48);
+    --color-rock-400: oklch(51.07% 0.0203 117.68);
+    --color-rock-500: oklch(35.71% 0.0205 118.85); /* Цвет второстепенного текста */
+    --color-rock-600: oklch(20.28% 0.0226 116.16);
+    --color-rock-700: oklch(16.06% 0.0364 115.01); /* Цвет главного текста */
+    --color-rock-800: oklch(10.91% 0.0250 116.44);
+    --color-rock-900: oklch(05.82% 0.0198 142.50);
+
+    /* Мятовый акцентный цвет для важных элементов и анимации */
+    --color-accent-100: oklch(91.37% 0.119 165.12);
+    --color-accent-200: oklch(86.00% 0.120 164.70);
+    --color-accent-300: oklch(80.32% 0.119 165.23);
+    --color-accent-400: oklch(74.81% 0.119 165.30);
+    --color-accent-500: oklch(69.29% 0.123 164.95);
+    --color-accent-600: oklch(59.63% 0.125 164.92); /* Цвет при наведении */
+    --color-accent-700: oklch(46.76% 0.098 164.92);
+    --color-accent-800: oklch(32.91% 0.069 164.90);
+    --color-accent-900: oklch(20.83% 0.044 165.46);
+
     --color-background: rgb(1, 1, 1);
     --color-primary-element: rgb(0, 0, 0);
     --color-secondary-element: rgba(0, 0, 0, 0.6);
     --color-border: rgba(0, 0, 0, 0.1);
-    --color-contrast: #3182CE;
 }
 
-/* Добовление базовых стилей к элементам html с Tailwind */
 @layer base {
     h1 {
-        font-size: var(--text-2xl);
+        @apply antialiased text-base/14;
+        color: var(--color-rock-700);
+        font-family: var(--font-primary);
+        font-size: var(--text-5xl);
+        font-weight: var(--font-weight-black);
     }
     h2 {
-        font-size: var(--text-xl);
+        @apply antialiased;
+        color: var(--color-rock-700);
+        font-family: var(--font-primary);
+        font-size: var(--text-4xl);
+        font-weight: var(--font-weight-bold);
+    }
+    h3 {
+        @apply antialiased;
+        color: var(--color-rock-700);
+        font-family: var(--font-primary);
+        font-size: var(--text-3xl);
+    }
+    h4 {
+        @apply antialiased;
+        color: var(--color-rock-700);
+        font-family: var(--font-primary);
+        font-size: var(--text-2xl);
+    }
+    p {
+        @apply antialiased;
+        color: var(--color-rock-500);
+        font-family: var(--font-secondary);
+        font-weight: var(--font-weight-medium);
     }
 }
 
 @layer components {
     .btn-primary {
-        /* Общие кастомные стили */
-        font-family: var(--font-secondary);
-
         @apply
             /* Позиционирование и выравнивание */
             flex items-center justify-center 
 
-            /* Отступы и размеры */
-            /* px-12 py-4 h-14 */
-
             /* Типография: размер, жирность, цвет текста */
-            font-bold text-white
+            font-secondary font-bold text-rock-100
 
             /* Фон и оформление */
-            bg-primary-element rounded-full
+            bg-rock-800 rounded-full shadow-xs
 
-            /* Тени и взаимодействие */
-            shadow-xs cursor-pointer select-none
+            /* Взаимодействие */
+            cursor-pointer select-none
 
             /* Адаптивные стили */
-            sm:text-xs sm:px-8 sm:py-2 sm:h-10   /* На экранах ≥ 640px */
-            md:text-sm md:px-10 md:py-2 md:h-12  /* На экранах ≥ 768px */
-            lg:text-base lg:px-10 lg:py-2 lg:h-12  /* На экранах ≥ 1024px */
-            xl:text-lg xl:px-12 xl:py-4 xl:h-14  /* На экранах ≥ 1280px */
-            2xl:text-lg 2xl:px-14 2xl:py-4 2xl:h-16 /* На экранах ≥ 1536px */
+            sm:text-xs   sm:px-8   sm:py-2  sm:h-10  /* На экранах ≥ 640px */
+            md:text-sm   md:px-10  md:py-2  md:h-12  /* На экранах ≥ 768px */
+            lg:text-base lg:px-10  lg:py-2  lg:h-12  /* На экранах ≥ 1024px */
+            xl:text-lg   xl:px-12  xl:py-4  xl:h-14  /* На экранах ≥ 1280px */
+            2xl:text-lg  2xl:px-14 2xl:py-4 2xl:h-16 /* На экранах ≥ 1536px */
 
             /* Состояние hover */
-            hover:text-teal-300;
+            hover:text-accent-600;
     }
 
     .btn-outline {
         @apply
             /* Позиционирование и выравнивание */
-            flex items-center justify-center 
+            flex items-center justify-center
 
             /* Типография: размер, жирность, цвет текста */
-            font-medium text-primary-element border-secondary-element
+            font-medium font-secondary text-rock-800 border-rock-800
 
             /* Фон и оформление */
-            bg-transparent border-2 rounded-full
+            bg-transparent border-2 rounded-full shadow-xs
 
-            /* Тени и взаимодействие */
-            shadow-xs cursor-pointer select-none
+            /* Взаимодействие */
+            cursor-pointer select-none
 
             /* Адаптивные стили */
-            sm:text-base sm:px-10 sm:py-2 sm:h-12   /* На экранах ≥ 640px */
-            md:text-base md:px-10 md:py-2 md:h-12  /* На экранах ≥ 768px */
-            lg:text-base lg:px-10 lg:py-2 lg:h-12  /* На экранах ≥ 1024px */
-            xl:text-lg xl:px-12 xl:py-4 xl:h-14  /* На экранах ≥ 1280px */
-            2xl:text-lg 2xl:px-12 2xl:py-4 2xl:h-16 /* На экранах ≥ 1536px */
+            sm:text-base sm:px-10  sm:py-2  sm:h-12  /* На экранах ≥ 640px */
+            md:text-base md:px-10  md:py-2  md:h-12  /* На экранах ≥ 768px */
+            lg:text-base lg:px-10  lg:py-2  lg:h-12  /* На экранах ≥ 1024px */
+            xl:text-lg   xl:px-12  xl:py-4  xl:h-14  /* На экранах ≥ 1280px */
+            2xl:text-lg  2xl:px-12 2xl:py-4 2xl:h-16 /* На экранах ≥ 1536px */
 
             /* Состояние hover */
-            hover:border-teal-800 hover:text-teal-600;
+            hover:border-accent-700 hover:text-accent-700;
+    }
+
+    .btn-navbar {
+        @apply
+            /* Позиционирование и выравнивание */
+            flex items-center whitespace-nowrap
+
+            /* Типография: размер, жирность, цвет текста */
+            font-secondary font-light text-rock-600
+
+            /* Взаимодействие */
+            cursor-pointer select-none
+
+            /* Адаптивные стили */
+            sm:text-base  sm:py-2  /* На экранах ≥ 640px */
+            md:text-base  md:py-2  /* На экранах ≥ 768px */
+            lg:text-base  lg:py-2  /* На экранах ≥ 1024px */
+            xl:text-lg    xl:py-2  /* На экранах ≥ 1280px */
+            2xl:text-lg   2xl:py-2 /* На экранах ≥ 1536px */
+
+            /* Состояния hover */
+          hover:text-accent-600;
     }
 }
-
-/*
-@layer components {
-    .btn-primary {
-        font-family: var(--font-secondary);
-        color: var(--color-white);
-        font-size: var(--text-lg);
-        font-weight: var(--font-bold);
-
-        display: flex;
-        justify-items: center;
-        justify-content: center;
-        
-        background-color: var(--color-primary-element);
-        padding: var(--space-4) var(--space-12);
-        border-radius: var(--rounded-full);
-        height: var(--space-14);
-
-        cursor: pointer;
-        user-select: none;
-        box-shadow: var(--shadow-xs);
-
-        &:hover {
-            color: var(--color-teal-300);
-        }
-    }
-}
-*/
 
 /* Свои стили */
+html {
+    background: var(--color-snow);
+}
 
-/* Изменение цвета выделения текста */
 ::selection {
-    background-color: oklch(.6 .118 184.704); /* Цвет фона выделения */
-    color: #000; /* Цвет текста при выделении */
+    background-color: var(--color-accent-500); /* Цвет фона выделения */
+    color: var(--color-rock-900); /* Цвет текста при выделении */
 }
 
 ::webkit-progress-bar {
-    background-color: #f3f3f3;
+    background-color: var(--color-snow); /* Фон полоски прогресса */
 }
-  
-  ::webkit-progress-value {
-    background-color: oklch(.6 .118 184.704); /* Задайте свой цвет */
+
+::-webkit-progress-value,  
+::-moz-progress-bar {  
+    background-color: var(--color-accent-500); /* Заполняемая часть полоски прогресса */
+}
+
+.border-smoothing {
+    clip-path: inset(0 round 20px);
+    -webkit-clip-path: inset(0 round 20px);
+    filter: blur(0.6px);
+    overflow: hidden;
 }
 
 .noise {

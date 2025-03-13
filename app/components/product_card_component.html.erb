@@ -4,15 +4,15 @@
     <% if @product.images.attached? %>
       <%= image_tag @product.images.first, class: "w-full h-full object-cover" %>
     <% else %>
-      <div class="w-full h-full bg-border flex items-center justify-center">
-        <span class="text-gray-500">No image</span>
+      <div class="flex items-center justify-center w-full h-full bg-rock-100">
+        <p class="select-none">No image</p>
       </div>
     <% end %>
   </div>
 
   <!-- Информация о товаре -->
   <div class="flex flex-col gap-2 pt-3">
-    <h3 class="text-lg font-secondary font-semibold"><%= @product.name %></h3>
+    <p class="text-lg text-rock-600 font-semibold"><%= @product.name %></p>
     
     <!-- Оценка товара -->
     <div class="ml-[-3px]">
@@ -21,7 +21,7 @@
     
     <!-- Цена -->
     <div class="flex items-center justify-between">
-      <span class="text-2xl font-bold text-primary-element"><%= number_to_currency(@product.base_price) %></span>
+      <h4 class="font-secondary font-bold"><%= number_to_currency(@product.base_price) %></h4>
     </div>
   </div>
 </div>

@@ -1,13 +1,13 @@
 <!-- Баннер для не зарегистрированных пользователей -->
 <% if logged_in? == false %>
-    <div class="bg-primary-element noise">
-        <div class="max-w-screen-xl mx-auto px-4 py-3 text-white sm:text-center md:px-8">
-            <p class="font-secondary font-medium">
+    <div class="bg-rock-900 noise">
+        <div class="flex flex-row justify-center gap-2 py-3">
+            <p class="text-rock-100 font-simibold text-lg">
                 Зарегистрируйся и получи скидку 10% на первую покупку!
-                <%= link_to new_user_path, method: :post, class: "font-secondary font-semibold underline duration-150 hover:text-teal-400 inline-flex items-center gap-x-1" do %>
-                    Зарегистрироваться
-                <% end %>
             </p>
+            <%= link_to new_user_path, method: :post, class: "flex items-center text-rock-100 font-secondary font-semibold underline hover:text-accent-600 duration-150" do %>
+                Зарегистрироваться
+            <% end %>
         </div>
     </div>
 <% end %>
@@ -19,10 +19,10 @@
 <div class="flex flex-row items-center flex-nowrap place-content-between h-[75vh]">
     <div class="p-12 flex-1 min-w-0">
         <!-- Текст -->
-        <h1 class="pb-6 font-primary text-primaryElement text-5xl font-black">НАЙДИТЕ ОДЕЖДУ, СООТВЕТСТВУЮЩУЮ ВАШЕМУ СТИЛЮ</h1>
-        <h2 class="py-10 font-secondary text-secondary-element text-xl font-light">
+        <h1 class="pb-6">НАЙДИТЕ ОДЕЖДУ, СООТВЕТСТВУЮЩУЮ ВАШЕМУ СТИЛЮ</h1>
+        <p class="py-10 text-xl">
             Погрузитесь в наш широкий ассортимент уникальных изделий, каждое из которых создано с заботой о деталях, чтобы подчеркнуть вашу индивидуальность и стать выражением вашего стиля.
-        </h2>
+        </p>
 
         <!-- Кнопка -->
         <%= button_to root_path, class: "btn-primary noise" do %>
@@ -31,18 +31,18 @@
 
         <!-- Достижения -->
         <div class="mt-12 pt-10">
-            <ul class="flex flex-col items-center justify-left gap-y-8 flex-row lg:divide-x divide-border">
+            <ul class="flex items-center justify-left gap-y-8 flex-row lg:divide-x divide-border">
                 <li class="text-left pr-8 md:pr-12">
-                    <h4 class="text-5xl text-primary-element font-bold">200+</h4>
-                    <p class="mt-2 text-lg text-secondary-element ">Брендов</p>
+                    <h2 class="font-secondary text-5xl font-medium">200+</h2>
+                    <p class="mt-2 text-lg text-rock-500 ">Брендов</p>
                 </li>
                 <li class="text-left px-8 md:px-12">
-                    <h4 class="text-5xl text-primary-element font-bold">2,000+</h4>
-                    <p class="mt-2 text-lg text-secondary-element">Продуктов</p>
+                    <h2 class="font-secondary text-5xl font-medium">2,000+</h2>
+                    <p class="mt-2 text-lg text-rock-500">Продуктов</p>
                 </li>
                 <li class="text-left pl-8 md:pl-12">
-                    <h4 class="text-5xl text-primary-element font-bold">10,000+</h4>
-                    <p class="mt-2 text-lg text-secondary-element">Покупателей</p>
+                    <h2 class="font-secondary text-5xl font-medium">10,000+</h2>
+                    <p class="mt-2 text-lg text-rock-500">Покупателей</p>
                 </li>
             </ul>
         </div>
@@ -51,14 +51,14 @@
 </div>
 
 <!-- Лента брендов -->
-<div class="flex flex-row sm:flex-wrap gap-8 px-12 justify-between min-h-[8vh] h-auto bg-primary-element rounded-3xl">
+<div class="flex justify-between items-center flex-row sm:flex-wrap gap-6 py-12 sm:p-4 h-auto bg-rock-800 rounded-3xl">
     <% ['versace', 'zara', 'gucci', 'prada', 'calvin-klein'].each do |brand| %>
         <%= image_tag "#{brand}-logo.png", class: "max-h-full max-w-[120px] object-contain select-none" %>
     <% end %>
 </div>
 
 <!-- Часть "Новое поступление" -->
-<h1 class="pt-20 pb-14 font-primary text-primaryElement flex justify-center text-5xl font-black">Новое поступление</h1>
+<h1 class="pt-20 pb-14 flex justify-center">Новое поступление</h1>
 <div class="container mx-auto px-4 py-8">
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
     <% @products.each do |product| %>
@@ -68,7 +68,7 @@
 </div>
 
 <div class="flex justify-center justify-items-center pb-16">
-  <%= button_to root_path, class: "btn-outline" do %>
+  <%= button_to root_path, class: "btn-outline border-smoothing" do %>
     Смотреть больше
   <% end %>
 </div>
@@ -76,7 +76,7 @@
 <hr class="my-4 border-t border-gray-300">
 
 <!-- Часть "Больше всего продано" -->
-<h1 class="pt-20 pb-14 font-primary text-primary-element flex justify-center text-5xl font-black">Больше всего продано</h1>
+<h1 class="pt-20 pb-14 flex justify-center">Больше всего продано</h1>
 <div class="container mx-auto px-4 py-8">
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
     <% @products.each do |product| %>
@@ -87,12 +87,13 @@
 
 
 <div class="bg-border rounded-3xl h-auto">
-    <h1 class="pt-14 font-primary text-primary-element flex justify-center text-5xl font-black">Найди свой стиль</h1>
+    <h1 class="pt-14 flex justify-center">Найди свой стиль</h1>
     <!-- Карточки категорий -->
     <div class="flex items-center justify-center py-16 px-34">
         <div class="grid grid-cols-5 gap-6">
             <!-- Стиль Casual -->
             <div class="col-span-2 w-auto h-90 rounded-3xl overflow-hidden">
+                <h3 class="absolute p-6">Повседневный</h3>
                 <%= image_tag 'styles/casual-style.png', class: 'w-full h-auto object-cover object-center select-none' %>
             </div>
 
@@ -115,7 +116,11 @@
     </div>
 </div>
 
-<h1 class="pt-20 pb-14 font-primary text-primary-element flex justify-start text-5xl font-black">Отзывы наших покупателей</h1>
-<div class="grid grid-row-1 gap-6">
+<h1 class="pt-20 pb-14 flex justify-start text-accent-400">Отзывы наших покупателей</h1>
 
+<div class="grid grid-row-1 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    <div class="border-2 rounded-3xl border-border">
+        <h4>Sarah M.</h4>
+        <p>"I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations.”</p>
+    </div>
 </div>
