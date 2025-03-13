@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-  const button = document.querySelector(".arrow-rotate-button");
+  const button = document.getElementById("arrow-rotate-button");
   const arrow = document.getElementById("arrow");
   const dropdown = document.getElementById("dropdown");
   let hideTimeout; // Переменная для хранения таймера
