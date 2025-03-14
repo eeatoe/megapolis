@@ -1,6 +1,8 @@
 class Variant < ApplicationRecord
   # Связи (associations)
   belongs_to :product
+  has_many :cart_items, dependent: :destroy
+  has_many :carts, through: :card_items
 
   # Валидации (validations)
   validates :color, presence: true,

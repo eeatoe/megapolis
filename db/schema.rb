@@ -98,9 +98,10 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_04_020833) do
     t.string "name", null: false
     t.text "description", null: false
     t.decimal "base_price", precision: 10, scale: 2, null: false
-    t.float "average_rating"
     t.text "main_material", null: false
     t.text "filling_material"
+    t.float "average_rating"
+    t.integer "sales_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "category_id", null: false
