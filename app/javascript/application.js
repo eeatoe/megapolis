@@ -2,4 +2,5 @@
 import "@hotwired/turbo-rails"
 import "./controllers"
 
-import "../javascript/components/arrow-rotate-button.js"
+import "../javascript/scroll-restore.js"
+import "../javascript/components/dropdown-menu.js"

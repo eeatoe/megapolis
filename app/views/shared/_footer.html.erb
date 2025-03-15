@@ -1,0 +1,76 @@
+<footer class="bg-rock-100 text-white">
+  <!-- Newsletter Section -->
+  <div class="relative flex flex-col justify-center md:flex-row bottom-6 bg-rock-800 rounded-4xl p-10">
+    <h2 class="flex items-center text-3xl font-bold text-snow w-160">
+      БУДЬ В КУРСЕ ВСЕХ НАШИХ ПОСЛЕДНИХ ПРЕДЛОЖЕНИЙ
+    </h2>
+    <div class="flex flex-col gap-2">
+      <input type="email" placeholder="Enter your email" class="input-field text-snow">
+      <button class="btn-primary bg-snow text-rock-800 hover:text-accent-600">Подписаться</button>
+    </div>
+  </div>
+
+  <div class="container mx-auto px-4 pb-10">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div class="flex flex-col justify-center gap-4 pr-10">
+        <h2 class="text-2xl font-black">MEGAPOLIS</h2>
+        <p class="text-rock-300 font-normal">У нас есть мужская одежда, которая подходит вашему стилю и которую вы с наслаждением носите.</p>
+        <!-- Ссылки на соцсети -->
+        <div class="flex flex-row gap-4">
+          <%= inline_svg 'icons/social/instagram.svg', class: "w-7 h-7 fill-rock-800"%>
+          <%= inline_svg 'icons/social/vk.svg', class: "w-7 h-7 fill-rock-800"%>
+          <%= inline_svg 'icons/social/telegram.svg', class: "w-7 h-7 fill-rock-800"%>
+          <%= inline_svg 'icons/social/githab.svg', class: "w-7 h-7 fill-rock-800"%>
+        </div>
+      </div>
+
+      <!-- Company Links -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">COMPANY</h3>
+        <ul>
+          <li class="font-secondary text-rock-300 mb-2 hover:text-rock-500"><a href="#">About</a></li>
+          <li class="font-secondary text-rock-300 mb-2 hover:text-rock-500"><a href="#">Features</a></li>
+          <li class="font-secondary text-rock-300 mb-2 hover:text-rock-500"><a href="#">Works</a></li>
+          <li class="font-secondary text-rock-300 mb-2 hover:text-rock-500"><a href="#">Career</a></li>
+        </ul>
+      </div>
+
+      <!-- Help Links -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">HELP</h3>
+        <ul>
+          <li class="font-secondary text-rock-300 mb-2 hover:text-rock-500"><a href="#">Customer Support</a></li>
+          <li class="font-secondary text-rock-300 mb-2 hover:text-rock-500"><a href="#">Delivery Details</a></li>
+          <li class="font-secondary text-rock-300 mb-2 hover:text-rock-500"><a href="#">Terms & Conditions</a></li>
+          <li class="font-secondary text-rock-300 mb-2 hover:text-rock-500"><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+      <!-- FAQ Links -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">FAQ</h3>
+        <ul>
+          <li class="font-secondary text-rock-300 mb-2 hover:text-rock-500"><a href="#">Account</a></li>
+          <li class="font-secondary text-rock-300 mb-2 hover:text-rock-500"><a href="#">Manage Deliveries</a></li>
+          <li class="font-secondary text-rock-300 mb-2 hover:text-rock-500"><a href="#">Orders</a></li>
+          <li class="font-secondary text-rock-300 mb-2 hover:text-rock-500"><a href="#">Payments</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Section -->
+    <div class="border-t border-rock-200 mt-8 pt-8">
+      <div class="flex justify-between items-center">
+        <div>
+          <p class="text-rock-300 font-normal">© 2025 MEGAPOLIS.CO. All rights reserved.</p>
+        </div>
+        <div class="flex flex-row gap-4">
+          <%= inline_svg 'icons/payment/visa.svg', class: "w-10 h-10"%>
+          <%= inline_svg 'icons/payment/mastercard.svg', class: "w-10 h-10"%>
+          <%= inline_svg 'icons/payment/unionpay.svg', class: "w-10 h-10"%>
+          <!-- Add other payment methods here -->
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

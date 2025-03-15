@@ -1,30 +1,31 @@
-<nav class="flex justify-between items-center py-4 bg-rock-50 lg:rounded-b-3xl shadow-md">
+<nav class="flex justify-between items-center py-4 lg:rounded-b-3xl shadow-md bg-rock-50">
   <!-- Логотип -->
-  <a href="/" class="text-rock-600 text-2xl font-primary font-extrabold px-8 hover:text-accent-600 select-none">MEGAPOLIS</a>
+  <a href="/" class="flex px-8 text-2xl font-primary font-extrabold text-rock-600 hover:text-accent-600 select-none">
+    MEGAPOLIS
+  </a>
 
   <!-- Разделы для навигации -->
   <div class="flex items-center px-8 gap-4">
 
     <!-- Начало кода для раздела каталог -->
     <div class="relative">
-      <button id="arrow-rotate-button" class="btn-navbar">
-        Каталог
+      <div id="dropdown-trigger" class="inline-flex items-center">
+        <button class="btn-navbar">Каталог</button>
         <!-- Значек стрелки -->
-        <span class="ml-1 mt-[2px] transform transition-transform duration-250 ease-in-out" id="arrow">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="rgb(0, 0, 0)" class="w-4.5 h-4.5">
-            <path stroke-width="1.6" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-          </svg>
+        <span class="flex items-center ml-1 mt-[2px] w-3 h-3">
+          <%= inline_svg 'icons/arrow-down.svg', id: 'arrow', class: 'flex text-rock-600 transform transition-transform duration-250 ease-in-out' %>
         </span>
-      </button>
-      <div id="dropdown" class="absolute top-0 left-0 mt-10 w-max bg-rock-50 border-rock-200 border rounded-3xl shadow-xl hidden group-hover:block">
+      </div>
+
+      <div id="menu" class="absolute top-0 left-0 mt-15 w-max hidden group-hover:block bg-rock-50 border border-rock-200 rounded-3xl shadow-xl">
         <div class="flex flex-row p-2">
           <% @categories.each do |category| %>
             <div>
-              <a href="<%= category_path(category) %>" class="block px-4 py-2 font-primary text-primary-element hover:text-accent-600"><%= category.name %></a>
+              <a href="<%= category_path(category) %>" class="block px-4 py-2 font-primary text-rock-800 hover:text-accent-600"><%= category.name %></a>
               <% if category.children.any? %>
-                <div class="pl-4">
+                <div class="pl-2">
                   <% category.children.each do |child| %>
-                    <a href="<%= category_path(child) %>" class="block px-4 py-2 font-secondary font-medium text-secondary-element hover:text-accent-600"><%= child.name %></a>
+                    <a href="<%= category_path(child) %>" class="block px-4 py-2 font-secondary font-medium text-rock-500 hover:text-accent-600"><%= child.name %></a>
                   <% end %>
                 </div>
               <% end %>
@@ -42,33 +43,24 @@
   <!-- Поле поиска -->
   <div class="relative px-8 w-full y-full select-none">
     <!-- Значек лупы -->
-    <span class="absolute inset-y-0 left-8 flex items-center pl-3 pointer-events-none mr-2">
-      <svg class="stroke-current ml-1 w-4.5 h-4.5" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-width="1.6" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-      </svg>
+    <span class="absolute inset-y-0 left-8 flex items-center pl-3 mr-2 pointer-events-none">
+      <%= inline_svg 'icons/search.svg', class: "flex stroke-current ml-1 w-4.5 h-4.5"%>
     </span>
-    <input type="text" placeholder="Поиск..." class="w-full h-11 pr-5 pl-12 py-2 font-secondary bg-rock-100 rounded-full focus:outline-none focus:text-accent-600 hover:text-accent-600 shadow-xs block" />
+    <input type="text" placeholder="Поиск..." class="block w-full h-11 pr-5 pl-12 py-2 font-secondary bg-rock-100 rounded-full shadow-xs hover:text-accent-600 focus:text-accent-600 focus:outline-none" />
   </div>
 
   <!-- Карзина и Профиль (динамичные элементы) -->
   <div class="flex items-center px-8 gap-4">
     <!-- Значек карзины -->
     <span>
-      <svg class="stroke-current ml-1 w-8 h-8 hover:stroke-accent-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-width="1.8" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
-      </svg>
+      <%= inline_svg 'icons/cart.svg', class: "stroke-current w-8 h-8 fill-rock-800 hover:fill-accent-600"%>
     </span>
     <% if @user %>
-      <svg class="stroke-current ml-1 w-8 h-8 hover:stroke-accent-600" viewBox="0 0 24 24" fill="none"  xmlns="http://www.w3.org/2000/svg">
-        <path stroke-width="1.8" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
+      <%= inline_svg 'icons/profile.svg', class: "stroke-current w-8 h-8 hover:fill-accent-600"%>
     <% else %>
-      <%= button_to new_session_path, method: :get, class: "font-secondary px-4 py-2 bg-rock-800 noise text-rock-100 rounded-full select-none hover:text-accent-600" do %>
+      <%= button_to new_session_path, method: :get, class: "flex font-secondary px-4 py-2 text-rock-100 bg-rock-800 rounded-full hover:text-accent-600 noise select-none" do %>
         Войти
       <% end %>
     <% end %>
   </div>
-
 </nav>
-
-
