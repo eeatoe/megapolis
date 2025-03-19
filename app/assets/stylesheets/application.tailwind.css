@@ -25,12 +25,13 @@
     --font-primary: "Unbounded", sans-serif;
     --font-secondary: "Golos Text", sans-serif;
 
+
     /* Цвет для фона */
     --color-snow: oklch(97.26% 0.0026 106.45);
 
     /* Темные-зеленые цвета для элементов */
     --color-rock-50: oklch(99.94% 0.0026 106.447); 
-    --color-rock-100: oklch(90.82% 0.0070 115.06); /* Цвет фона карточек */
+    --color-rock-100: oklch(90.82% 0.0150 115.06);
     --color-rock-200: oklch(81.71% 0.0195 116.66); /* Цвет рамок (линий) */
     --color-rock-300: oklch(66.35% 0.0191 117.48);
     --color-rock-400: oklch(51.07% 0.0203 117.68);
@@ -50,13 +51,9 @@
     --color-accent-700: oklch(46.76% 0.098 164.92);
     --color-accent-800: oklch(32.91% 0.069 164.90);
     --color-accent-900: oklch(20.83% 0.044 165.46);
-
-    --color-background: #E52100;
-    --color-primary-element: #E52100;
-    --color-secondary-element: #E52100;
-    --color-border: #E52100;
 }
 
+/* Добовление базовых стилей к элементам html с Tailwind */
 @layer base {
     h1 {
         @apply antialiased text-base/14;
@@ -191,6 +188,10 @@
 /* Свои стили */
 /* ================================================== */
 
+html {
+    background: var(--color-snow);
+}
+
 /* -------------------------------------------------- */
 /* Стили для выделения текста */
 /* -------------------------------------------------- */
@@ -199,16 +200,22 @@
     color: var(--color-rock-900); /* Цвет текста при выделении */
 }
 
-/* -------------------------------------------------- */
-/* Стили для полосы загрузки (progress bar) */
-/* -------------------------------------------------- */
-::-webkit-progress-bar {
-    background-color: var(--color-snow); /* Фон полоски прогресса */
+/* Фон полоски прогресса */
+::webkit-progress-bar {
+    background-color: var(--color-snow);
 }
 
-::-webkit-progress-value,
-::-moz-progress-bar {
-    background-color: var(--color-accent-500); /* Заполняемая часть полоски прогресса */
+/* Заполняемая часть полоски прогресса */
+::-webkit-progress-value,  
+::-moz-progress-bar {  
+    background-color: var(--color-accent-500);
+}
+
+.border-smoothing {
+    clip-path: inset(0 round 20px);
+    -webkit-clip-path: inset(0 round 20px);
+    filter: blur(0.6px);
+    overflow: hidden;
 }
 
 /* -------------------------------------------------- */
