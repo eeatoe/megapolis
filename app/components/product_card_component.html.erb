@@ -1,18 +1,22 @@
 <div class="overflow-hidden">
   <!-- Контейнер для изображения -->
   <div class="w-full rounded-3xl shadow-2xs aspect-square overflow-hidden">
-    <% if @product.images.attached? %>
-      <%= image_tag @product.images.first, class: "w-full h-full object-cover" %>
-    <% else %>
-      <div class="flex items-center justify-center w-full h-full bg-rock-100">
-        <p class="select-none">No image</p>
-      </div>
+    <%= link_to product_path(@product), class: "block w-full h-full" do %>
+      <% if @product.images.attached? %>
+        <%= image_tag @product.images.first, class: "w-full h-full object-cover" %>
+      <% else %>
+        <div class="flex items-center justify-center w-full h-full bg-rock-100">
+          <p class="select-none">No image</p>
+        </div>
+      <% end %>
     <% end %>
   </div>
 
   <!-- Информация о товаре -->
   <div class="flex flex-col gap-2 pt-3">
-    <p class="text-lg text-rock-600 font-semibold"><%= @product.name %></p>
+    <p class="text-lg text-rock-600 font-semibold">
+      <%= link_to @product.name, product_path(@product), class: "hover:text-accent-600 transition" %>
+    </p>
     
     <!-- Оценка товара -->
     <div class="ml-[-3px]">

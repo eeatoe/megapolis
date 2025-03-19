@@ -1,4 +1,6 @@
 class Product < ApplicationRecord
+  include SlugGeneratable
+
   # Связи (associations)
   belongs_to :category
   belongs_to :brand, optional: true 
@@ -10,7 +12,9 @@ class Product < ApplicationRecord
   validates :name, presence: true, 
     uniqueness: true,
     format: { with: Constants::ALPHANUMERIC_NAME_FORMAT },
-    length: { minimum: 20, maximum: 100 }
+    length: { minimum: 10, maximum: 90 }
+
+  validates :slug, presence: true, uniqueness: { case_sensitive: false }
 
   validates :description, presence: true, 
     length: { maximum: 500 }
@@ -35,6 +39,8 @@ class Product < ApplicationRecord
   def average_rating
     self[:average_rating]
   end
+
+  def to_param; slug; end
 
   private
 

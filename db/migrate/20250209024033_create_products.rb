@@ -2,6 +2,7 @@ class CreateProducts < ActiveRecord::Migration[7.1]
   def change
     create_table :products do |t|
       t.string :name, null: false
+      t.string :slug, null: false
       t.text :description, null: false
       t.decimal :base_price, precision: 10, scale: 2, null: false
 
@@ -14,7 +15,8 @@ class CreateProducts < ActiveRecord::Migration[7.1]
       t.integer :sales_count, default: 0, null: true
 
       # Индексы
-      t.index :name
+      t.index :name, unique: true
+      t.index :slug, unique: true
 
       t.timestamps
     end

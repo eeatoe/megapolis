@@ -1,4 +1,4 @@
-<nav class="flex justify-between items-center py-4 lg:rounded-b-3xl shadow-md bg-rock-50">
+<nav class="flex justify-between items-center py-6 <%= @is_landing == true ? 'lg:rounded-b-3xl shadow-md bg-rock-50' : 'bg-transparent border-b border-gray-300' %>">
   <!-- Логотип -->
   <a href="/" class="flex px-8 text-2xl font-primary font-extrabold text-rock-600 hover:text-accent-600 select-none">
     MEGAPOLIS
@@ -6,8 +6,7 @@
 
   <!-- Разделы для навигации -->
   <div class="flex items-center px-8 gap-4">
-
-    <!-- Начало кода для раздела каталог -->
+    <!-- Меню категорий -->
     <div class="relative">
       <div id="dropdown-trigger" class="inline-flex items-center">
         <button class="btn-navbar">Каталог</button>
@@ -34,7 +33,6 @@
         </div>
       </div>
     </div>
-    <!-- Конец кода для раздела каталог -->
 
     <a href="/new-arrivals" class="btn-navbar">Новое поступление</a>
     <a href="/brands" class="btn-navbar">Бренды</a>

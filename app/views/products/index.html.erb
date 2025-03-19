@@ -13,7 +13,7 @@
 <% end %>
 
 <!-- Navbar -->
-<%= render NavbarComponent.new(user: current_user, categories: @categories) %>
+<%= render NavbarComponent.new(user: current_user, categories: @categories, is_landing: true) %>
 
 <!-- Приветственная часть -->
 <div class="flex flex-row items-center flex-nowrap place-content-between h-[75vh]">
@@ -49,13 +49,13 @@
       </ul>
     </div>
   </div>
-  <%= image_tag 'main_photo.png', class: 'h-full w-auto object-cover select-none' %>
+  <%= image_tag 'homepage-main-photo.png', class: 'h-full w-auto object-cover select-none' %>
 </div>
 
 <!-- Лента брендов -->
 <div class="flex flex-row justify-between items-center gap-6 py-12 sm:p-4 sm:flex-wrap h-auto bg-rock-800 rounded-3xl">
   <% ['versace', 'zara', 'gucci', 'prada', 'calvin-klein'].each do |brand| %>
-    <%= image_tag "#{brand}-logo.png", class: "max-h-full max-w-[120px] object-contain select-none" %>
+    <%= image_tag "brands/#{brand}-logo.png", class: "max-h-full max-w-[120px] object-contain select-none" %>
   <% end %>
 </div>
 

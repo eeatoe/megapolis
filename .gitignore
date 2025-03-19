@@ -42,5 +42,7 @@
 # Node modules
 /node_modules
 
-# Obsidian config
-/.obsidian/*
+# Files IDE
+/.vscode
+/.obsidian
+/.yarn
