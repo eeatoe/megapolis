@@ -1,2 +1,27 @@
 <!-- Navbar -->
 <%= render NavbarComponent.new(user: current_user, categories: @categories) %>
+
+<div class="py-10">
+  <%= render BreadcrumbsComponent.new(category: @product.category) %>
+</div>
+
+<div class="flex flex-row">
+  <div class="grid grid-cols-4 grid-rows-3">
+    <div class="col-span-1 row-span-1">
+
+    </div>
+    <div class="col-span-1 row-span-1">
+
+    </div>
+    <div class="col-span-1 row-span-1">
+
+    </div>
+    <div class="col-span-3 row-span-3">
+
+    </div>
+  </div>
+
+  <div>
+
+  </div>
+</div>

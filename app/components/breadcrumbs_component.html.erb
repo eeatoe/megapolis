@@ -1,0 +1,25 @@
+<nav class="flex" aria-label="Breadcrumb">
+  <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+    <li class="inline-flex items-center">
+      <%= link_to root_path, class: "inline-flex items-center text-lg font-medium text-rock-400 hover:text-accent-600" do %>
+        Главная
+      <% end %>
+    </li>
+
+    <% @breadcrumb.each_with_index do |category, index| %>
+      <li>
+        <div class="flex items-center">
+          <%= inline_svg 'icons/arrow-left.svg', class: "w-3 h-3 text-rock-400 mx-1" %>
+
+          <% if index == @breadcrumb.length - 1 %>
+            <span class="flex items-center ms-1 text-lg font-medium text-rock-800 md:ms-2"><%= category.name %></span>
+          <% else %>
+            <%= link_to category_path(category), class: "ms-1 text-lg font-medium text-rock-400 hover:text-accent-600 md:ms-2" do %>
+              <%= category.name %>
+            <% end %>
+          <% end %>
+        </div>
+      </li>
+    <% end %>
+  </ol>
+</nav>
