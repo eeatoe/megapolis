@@ -15,139 +15,252 @@
 │ lg           │ Ноутбуки               │ ≥ 1024px      │
 │ xl           │ Большие мониторы       │ ≥ 1280px      │
 │ 2xl          │ Full HD дисплеи (1080p)│ ≥ 1920px      │
-│ 3xl          │ Ультраширокие (21:9)   │ ≥ 2560px      │
 └──────────────┴────────────────────────┴───────────────┘*/
 
-/* Добовление переменных к Tailwind */
 @theme {
     /* Кастомные breakpoint-ы */
     --breakpoint-2xl: 120rem;
-    --breakpoint-3xl: 160rem;
 
     /* Кастомные шрифты */
     --font-primary: "Unbounded", sans-serif;
     --font-secondary: "Golos Text", sans-serif;
 
-    /* Кастомные Цвета */
-    --color-background: rgb(1, 1, 1);
-    --color-primary-element: rgb(0, 0, 0);
-    --color-secondary-element: rgba(0, 0, 0, 0.6);
-    --color-border: rgba(0, 0, 0, 0.1);
-    --color-contrast: #3182CE;
+
+    /* Цвет для фона */
+    --color-snow: oklch(97.26% 0.0026 106.45);
+
+    /* Темные-зеленые цвета для элементов */
+    --color-rock-50: oklch(99.94% 0.0026 106.447); 
+    --color-rock-100: oklch(90.82% 0.0070 115.06);
+    --color-rock-200: oklch(81.71% 0.0195 116.66); /* Цвет рамок (линий) */
+    --color-rock-300: oklch(66.35% 0.0191 117.48);
+    --color-rock-400: oklch(51.07% 0.0203 117.68);
+    --color-rock-500: oklch(35.71% 0.0205 118.85); /* Цвет второстепенного текста */
+    --color-rock-600: oklch(20.28% 0.0226 116.16);
+    --color-rock-700: oklch(16.06% 0.0364 115.01); /* Цвет главного текста */
+    --color-rock-800: oklch(10.91% 0.0250 116.44);
+    --color-rock-900: oklch(05.82% 0.0198 142.50);
+
+    /* Мятовый акцентный цвет для важных элементов и анимации */
+    --color-accent-100: oklch(91.37% 0.119 165.12);
+    --color-accent-200: oklch(86.00% 0.120 164.70);
+    --color-accent-300: oklch(80.32% 0.119 165.23);
+    --color-accent-400: oklch(74.81% 0.119 165.30);
+    --color-accent-500: oklch(69.29% 0.123 164.95);
+    --color-accent-600: oklch(59.63% 0.125 164.92); /* Цвет при наведении */
+    --color-accent-700: oklch(46.76% 0.098 164.92);
+    --color-accent-800: oklch(32.91% 0.069 164.90);
+    --color-accent-900: oklch(20.83% 0.044 165.46);
 }
 
 /* Добовление базовых стилей к элементам html с Tailwind */
 @layer base {
     h1 {
-        font-size: var(--text-2xl);
+        @apply antialiased text-base/14;
+        color: var(--color-rock-700);
+        font-family: var(--font-primary);
+        font-size: var(--text-5xl);
+        font-weight: var(--font-weight-black);
     }
     h2 {
-        font-size: var(--text-xl);
+        @apply antialiased;
+        color: var(--color-rock-700);
+        font-family: var(--font-primary);
+        font-size: var(--text-4xl);
+        font-weight: var(--font-weight-bold);
+    }
+    h3 {
+        @apply antialiased;
+        color: var(--color-rock-700);
+        font-family: var(--font-primary);
+        font-size: var(--text-3xl);
+        font-weight: var(--font-weight-semibold);
+    }
+    h4 {
+        @apply antialiased;
+        color: var(--color-rock-700);
+        font-family: var(--font-primary);
+        font-size: var(--text-2xl);
+    }
+    p {
+        @apply antialiased;
+        color: var(--color-rock-500);
+        font-family: var(--font-secondary);
+        font-weight: var(--font-weight-medium);
     }
 }
 
 @layer components {
     .btn-primary {
-        /* Общие кастомные стили */
-        font-family: var(--font-secondary);
-
         @apply
             /* Позиционирование и выравнивание */
             flex items-center justify-center 
 
-            /* Отступы и размеры */
-            /* px-12 py-4 h-14 */
-
             /* Типография: размер, жирность, цвет текста */
-            font-bold text-white
+            font-secondary font-bold text-rock-100
 
             /* Фон и оформление */
-            bg-primary-element rounded-full
+            bg-rock-800 rounded-full shadow-xs
 
-            /* Тени и взаимодействие */
-            shadow-xs cursor-pointer select-none
+            /* Взаимодействие */
+            cursor-pointer select-none
 
             /* Адаптивные стили */
-            sm:text-xs sm:px-8 sm:py-2 sm:h-10   /* На экранах ≥ 640px */
-            md:text-sm md:px-10 md:py-2 md:h-12  /* На экранах ≥ 768px */
-            lg:text-base lg:px-10 lg:py-2 lg:h-12  /* На экранах ≥ 1024px */
-            xl:text-lg xl:px-12 xl:py-4 xl:h-14  /* На экранах ≥ 1280px */
-            2xl:text-lg 2xl:px-14 2xl:py-4 2xl:h-16 /* На экранах ≥ 1536px */
+            sm:text-xs   sm:px-8   sm:py-2  sm:h-10  /* На экранах ≥ 640px */
+            md:text-sm   md:px-10  md:py-2  md:h-12  /* На экранах ≥ 768px */
+            lg:text-base lg:px-10  lg:py-2  lg:h-12  /* На экранах ≥ 1024px */
+            xl:text-lg   xl:px-12  xl:py-4  xl:h-14  /* На экранах ≥ 1280px */
+            2xl:text-lg  2xl:px-14 2xl:py-4 2xl:h-16 /* На экранах ≥ 1536px */
 
             /* Состояние hover */
-            hover:text-teal-300;
+            hover:text-accent-600;
     }
 
     .btn-outline {
         @apply
             /* Позиционирование и выравнивание */
-            flex items-center justify-center 
+            flex items-center justify-center
 
             /* Типография: размер, жирность, цвет текста */
-            font-medium text-primary-element border-secondary-element
+            font-medium font-secondary text-rock-600 border-rock-600
 
             /* Фон и оформление */
-            bg-transparent border-2 rounded-full
+            bg-transparent border-2 rounded-full shadow-xs
 
-            /* Тени и взаимодействие */
-            shadow-xs cursor-pointer select-none
+            /* Взаимодействие */
+            cursor-pointer select-none
 
             /* Адаптивные стили */
-            sm:text-base sm:px-10 sm:py-2 sm:h-12   /* На экранах ≥ 640px */
-            md:text-base md:px-10 md:py-2 md:h-12  /* На экранах ≥ 768px */
-            lg:text-base lg:px-10 lg:py-2 lg:h-12  /* На экранах ≥ 1024px */
-            xl:text-lg xl:px-12 xl:py-4 xl:h-14  /* На экранах ≥ 1280px */
-            2xl:text-lg 2xl:px-12 2xl:py-4 2xl:h-16 /* На экранах ≥ 1536px */
+            sm:text-base sm:px-10  sm:py-2  sm:h-12  /* На экранах ≥ 640px */
+            md:text-base md:px-10  md:py-2  md:h-12  /* На экранах ≥ 768px */
+            lg:text-base lg:px-10  lg:py-2  lg:h-12  /* На экранах ≥ 1024px */
+            xl:text-lg   xl:px-12  xl:py-4  xl:h-14  /* На экранах ≥ 1280px */
+            2xl:text-lg  2xl:px-12 2xl:py-4 2xl:h-16 /* На экранах ≥ 1536px */
 
             /* Состояние hover */
-            hover:border-teal-800 hover:text-teal-600;
+            hover:border-accent-600 hover:text-accent-600;
+    }
+
+    .btn-navbar {
+        @apply
+            /* Позиционирование и выравнивание */
+            flex items-center whitespace-nowrap
+
+            /* Типография: размер, жирность, цвет текста */
+            font-secondary font-light text-rock-600
+
+            /* Взаимодействие */
+            cursor-pointer select-none
+
+            /* Адаптивные стили */
+            sm:text-base  sm:py-2  /* На экранах ≥ 640px */
+            md:text-base  md:py-2  /* На экранах ≥ 768px */
+            lg:text-base  lg:py-2  /* На экранах ≥ 1024px */
+            xl:text-lg    xl:py-2  /* На экранах ≥ 1280px */
+            2xl:text-lg   2xl:py-2 /* На экранах ≥ 1536px */
+
+            /* Состояния hover */
+          hover:text-accent-600;
+    }
+
+    .input-field {
+        @apply
+            /* Позиционирование и выравнивание */
+            flex items-center justify-center
+
+            /* Типография: размер, жирность, цвет текста */
+            font-medium font-secondary text-rock-800 border-rock-200
+
+            /* Фон и оформление */
+            bg-transparent border-2 rounded-full shadow-xs
+
+            /* Адаптивные стили */
+            sm:text-xs   sm:px-8   sm:py-2  sm:h-10  /* На экранах ≥ 640px */
+            md:text-sm   md:px-10  md:py-2  md:h-12  /* На экранах ≥ 768px */
+            lg:text-base lg:px-10  lg:py-2  lg:h-12  /* На экранах ≥ 1024px */
+            xl:text-lg   xl:px-12  xl:py-4  xl:h-14  /* На экранах ≥ 1280px */
+            2xl:text-lg  2xl:px-14 2xl:py-4 2xl:h-16 /* На экранах ≥ 1536px */
     }
 }
 
-/*
-@layer components {
-    .btn-primary {
-        font-family: var(--font-secondary);
-        color: var(--color-white);
-        font-size: var(--text-lg);
-        font-weight: var(--font-bold);
 
-        display: flex;
-        justify-items: center;
-        justify-content: center;
-        
-        background-color: var(--color-primary-element);
-        padding: var(--space-4) var(--space-12);
-        border-radius: var(--rounded-full);
-        height: var(--space-14);
-
-        cursor: pointer;
-        user-select: none;
-        box-shadow: var(--shadow-xs);
-
-        &:hover {
-            color: var(--color-teal-300);
-        }
-    }
-}
-*/
-
+/* ================================================== */
 /* Свои стили */
+/* ================================================== */
 
-/* Изменение цвета выделения текста */
+html {
+    background: var(--color-snow);
+}
+
+/* -------------------------------------------------- */
+/* Стили для выделения текста */
+/* -------------------------------------------------- */
 ::selection {
-    background-color: oklch(.6 .118 184.704); /* Цвет фона выделения */
-    color: #000; /* Цвет текста при выделении */
+    background-color: var(--color-accent-500); /* Цвет фона выделения */
+    color: var(--color-rock-900); /* Цвет текста при выделении */
 }
 
+/* Фон полоски прогресса */
 ::webkit-progress-bar {
-    background-color: #f3f3f3;
-}
-  
-  ::webkit-progress-value {
-    background-color: oklch(.6 .118 184.704); /* Задайте свой цвет */
+    background-color: var(--color-snow);
 }
 
+/* Заполняемая часть полоски прогресса */
+::-webkit-progress-value,  
+::-moz-progress-bar {  
+    background-color: var(--color-accent-500);
+}
+
+.border-smoothing {
+    clip-path: inset(0 round 20px);
+    -webkit-clip-path: inset(0 round 20px);
+    filter: blur(0.6px);
+    overflow: hidden;
+}
+
+/* -------------------------------------------------- */
+/* Стили для скроллбара */
+/* -------------------------------------------------- */
+
+/* Общие настройки скроллбара */
+::-webkit-scrollbar {
+    width: 7px; /* Ширина вертикального скроллбара */
+    height: 7px; /* Высота горизонтального скроллбара */
+}
+
+/* Дорожка скроллбара (фон) */
+::-webkit-scrollbar-track {
+    background: var(--color-snow); /* Цвет фона */
+    border-radius: 5px; /* Скругление углов */
+}
+
+/* Ползунок скроллбара */
+::-webkit-scrollbar-thumb {
+    background: var(--color-rock-500); /* Цвет ползунка */
+    border-radius: 5px; /* Скругление углов */
+}
+
+/* Ползунок скроллбара при наведении */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-rock-600); /* Цвет при наведении */
+}
+
+/* -------------------------------------------------- */
+/* Свои классы */
+/* -------------------------------------------------- */
+
+html {
+    background: var(--color-snow);
+}
+
+/* Сглаживание границ */
+.border-smoothing {
+    clip-path: inset(0 round 20px);
+    -webkit-clip-path: inset(0 round 20px);
+    overflow: hidden;
+}
+
+/* Эффект шума (noise) для фона */
 .noise {
     background-image: url(data:image/png;base64,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);  
 }

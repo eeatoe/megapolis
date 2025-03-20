@@ -59,7 +59,7 @@ Category.find_or_create_by!(name: "Очки", parent: accessories)
 # Добовление тестовых пользователей
 # <------------------------------->
 
-first_user = User.find_by(email: "eeeatoe@example.com")
+first_user = User.find_by(email: "eeatoe@example.com")
 unless first_user
   first_user = User.create!(
     name: "Sergey", 

@@ -26,6 +26,9 @@ gem "stimulus-rails"
 # A framework for building reusable, testable & encapsulated view components in Ruby on Rails.
 gem "view_component"
 
+# Get an SVG into your view and then style it with CSS.
+gem 'inline_svg'
+
 # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
 gem "cssbundling-rails"
 

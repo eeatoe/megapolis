@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_03_04_020833) do
+ActiveRecord::Schema[7.1].define(version: 2025_03_04_012100) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -45,11 +45,9 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_04_020833) do
   create_table "brands", force: :cascade do |t|
     t.string "name", null: false
     t.string "slug", null: false
-    t.bigint "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_brands_on_name", unique: true
-    t.index ["parent_id"], name: "index_brands_on_parent_id"
     t.index ["slug"], name: "index_brands_on_slug", unique: true
   end
 
@@ -65,10 +63,12 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_04_020833) do
 
   create_table "carts", force: :cascade do |t|
     t.bigint "user_id"
+    t.string "session_id"
+    t.datetime "expires_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "session_id"
-    t.index ["session_id"], name: "index_carts_on_session_id"
+    t.index ["expires_at"], name: "index_carts_on_expires_at"
+    t.index ["session_id"], name: "index_carts_on_session_id", unique: true
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
@@ -96,6 +96,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_04_020833) do
 
   create_table "products", force: :cascade do |t|
     t.string "name", null: false
+    t.string "slug", null: false
     t.text "description", null: false
     t.decimal "base_price", precision: 10, scale: 2, null: false
     t.text "main_material", null: false
@@ -108,7 +109,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_04_020833) do
     t.bigint "brand_id"
     t.index ["brand_id"], name: "index_products_on_brand_id"
     t.index ["category_id"], name: "index_products_on_category_id"
-    t.index ["name"], name: "index_products_on_name"
+    t.index ["name"], name: "index_products_on_name", unique: true
+    t.index ["slug"], name: "index_products_on_slug", unique: true
     t.check_constraint "base_price > 0::numeric", name: "base_price_non_negative"
   end
 
@@ -141,7 +143,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_04_020833) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "brands", "brands", column: "parent_id"
   add_foreign_key "cart_items", "carts"
   add_foreign_key "cart_items", "variants"
   add_foreign_key "carts", "users"

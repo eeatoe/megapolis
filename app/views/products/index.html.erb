@@ -1,66 +1,68 @@
 <!-- Баннер для не зарегистрированных пользователей -->
 <% if logged_in? == false %>
-    <div class="bg-primary-element noise">
-        <div class="max-w-screen-xl mx-auto px-4 py-3 text-white sm:text-center md:px-8">
-            <p class="font-secondary font-medium">
-                Зарегистрируйся и получи скидку 10% на первую покупку!
-                <%= link_to new_user_path, method: :post, class: "font-secondary font-semibold underline duration-150 hover:text-teal-400 inline-flex items-center gap-x-1" do %>
-                    Зарегистрироваться
-                <% end %>
-            </p>
-        </div>
+  <div class="bg-rock-900 noise">
+    <div class="flex flex-row justify-center gap-2 py-3">
+      <p class="text-lg font-simibold text-rock-100">
+        Зарегистрируйся и получи скидку 10% на первую покупку!
+      </p>
+      <%= link_to new_user_path, method: :post, class: "flex items-center font-secondary font-semibold text-rock-100 underline duration-150 hover:text-accent-600" do %>
+        Зарегистрироваться
+      <% end %>
     </div>
+  </div>
 <% end %>
 
 <!-- Navbar -->
-<%= render NavbarComponent.new(user: current_user, categories: @categories) %>
+<%= render NavbarComponent.new(user: current_user, categories: @categories, is_landing: true) %>
 
 <!-- Приветственная часть -->
 <div class="flex flex-row items-center flex-nowrap place-content-between h-[75vh]">
-    <div class="p-12 flex-1 min-w-0">
-        <!-- Текст -->
-        <h1 class="pb-6 font-primary text-primaryElement text-5xl font-black">НАЙДИТЕ ОДЕЖДУ, СООТВЕТСТВУЮЩУЮ ВАШЕМУ СТИЛЮ</h1>
-        <h2 class="py-10 font-secondary text-secondary-element text-xl font-light">
-            Погрузитесь в наш широкий ассортимент уникальных изделий, каждое из которых создано с заботой о деталях, чтобы подчеркнуть вашу индивидуальность и стать выражением вашего стиля.
-        </h2>
+  <div class="flex-1 min-w-0 py-12 px-8">
+    <!-- Текст -->
+    <h1 class="pb-6">
+      НАЙДИТЕ ОДЕЖДУ, СООТВЕТСТВУЮЩУЮ ВАШЕМУ СТИЛЮ
+    </h1>
+    <p class="py-10 text-xl">
+      Погрузитесь в наш широкий ассортимент уникальных изделий, каждое из которых создано с заботой о деталях, чтобы подчеркнуть вашу индивидуальность и стать выражением вашего стиля.
+    </p>
 
-        <!-- Кнопка -->
-        <%= button_to root_path, class: "btn-primary noise" do %>
-            Каталог
-        <% end %>
+    <!-- Кнопка -->
+    <%= button_to root_path, class: "btn-primary noise" do %>
+      Каталог
+    <% end %>
 
-        <!-- Достижения -->
-        <div class="mt-12 pt-10">
-            <ul class="flex flex-col items-center justify-left gap-y-8 flex-row lg:divide-x divide-border">
-                <li class="text-left pr-8 md:pr-12">
-                    <h4 class="text-5xl text-primary-element font-bold">200+</h4>
-                    <p class="mt-2 text-lg text-secondary-element ">Брендов</p>
-                </li>
-                <li class="text-left px-8 md:px-12">
-                    <h4 class="text-5xl text-primary-element font-bold">2,000+</h4>
-                    <p class="mt-2 text-lg text-secondary-element">Продуктов</p>
-                </li>
-                <li class="text-left pl-8 md:pl-12">
-                    <h4 class="text-5xl text-primary-element font-bold">10,000+</h4>
-                    <p class="mt-2 text-lg text-secondary-element">Покупателей</p>
-                </li>
-            </ul>
-        </div>
+    <!-- Достижения -->
+    <div class="mt-12 pt-10">
+      <ul class="flex flex-row items-center justify-left gap-y-8 lg:divide-x divide-rock-200">
+        <li class="text-left pr-8 md:pr-12">
+          <h2 class="text-5xl font-secondary font-medium">200+</h2>
+          <p class="mt-2 text-lg text-rock-500">Брендов</p>
+        </li>
+        <li class="text-left px-8 md:px-12">
+          <h2 class="text-5xl font-secondary font-medium">2,000+</h2>
+          <p class="mt-2 text-lg text-rock-500">Продуктов</p>
+        </li>
+        <li class="text-left pl-8 md:pl-12">
+          <h2 class="text-5xl font-secondary font-medium">10,000+</h2>
+          <p class="mt-2 text-lg text-rock-500">Покупателей</p>
+        </li>
+      </ul>
     </div>
-    <%= image_tag 'main_photo.png', class: 'h-full w-auto object-cover select-none' %>
+  </div>
+  <%= image_tag 'homepage-main-photo.png', class: 'h-full w-auto object-cover select-none' %>
 </div>
 
 <!-- Лента брендов -->
-<div class="flex flex-row sm:flex-wrap gap-8 px-12 justify-between min-h-[8vh] h-auto bg-primary-element rounded-3xl">
-    <% ['versace', 'zara', 'gucci', 'prada', 'calvin-klein'].each do |brand| %>
-        <%= image_tag "#{brand}-logo.png", class: "max-h-full max-w-[120px] object-contain select-none" %>
-    <% end %>
+<div class="flex flex-row justify-between items-center gap-6 py-12 sm:p-4 sm:flex-wrap h-auto bg-rock-800 rounded-3xl">
+  <% ['versace', 'zara', 'gucci', 'prada', 'calvin-klein'].each do |brand| %>
+    <%= image_tag "brands/#{brand}-logo.png", class: "max-h-full max-w-[120px] object-contain select-none" %>
+  <% end %>
 </div>
 
 <!-- Часть "Новое поступление" -->
-<h1 class="pt-20 pb-14 font-primary text-primaryElement flex justify-center text-5xl font-black">Новое поступление</h1>
-<div class="container mx-auto px-4 py-8">
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+<h1 class="flex justify-center pt-20 pb-14">Новое поступление</h1>
+<div class="container px-4 py-8 mx-auto">
+  <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
     <% @products.each do |product| %>
       <%= render ProductCardComponent.new(product: product) %>
     <% end %>
@@ -68,7 +70,7 @@
 </div>
 
 <div class="flex justify-center justify-items-center pb-16">
-  <%= button_to root_path, class: "btn-outline" do %>
+  <%= button_to root_path, class: "btn-outline border-smoothing" do %>
     Смотреть больше
   <% end %>
 </div>
@@ -76,46 +78,93 @@
 <hr class="my-4 border-t border-gray-300">
 
 <!-- Часть "Больше всего продано" -->
-<h1 class="pt-20 pb-14 font-primary text-primary-element flex justify-center text-5xl font-black">Больше всего продано</h1>
-<div class="container mx-auto px-4 py-8">
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+<h1 class="flex justify-center pt-20 pb-14">Больше всего продано</h1>
+<div class="container px-4 py-8 mx-auto">
+  <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
     <% @products.each do |product| %>
       <%= render ProductCardComponent.new(product: product) %>
     <% end %>
   </div>
 </div>
 
-
-<div class="bg-border rounded-3xl h-auto">
-    <h1 class="pt-14 font-primary text-primary-element flex justify-center text-5xl font-black">Найди свой стиль</h1>
-    <!-- Карточки категорий -->
-    <div class="flex items-center justify-center py-16 px-34">
-        <div class="grid grid-cols-5 gap-6">
-            <!-- Стиль Casual -->
-            <div class="col-span-2 w-auto h-90 rounded-3xl overflow-hidden">
-                <%= image_tag 'styles/casual-style.png', class: 'w-full h-auto object-cover object-center select-none' %>
-            </div>
-
-            <!-- Стиль Formal -->
-            <div class="col-span-3 w-auto h-90 rounded-3xl overflow-hidden">
-                <%= image_tag 'styles/formal-style.png', class: 'w-full h-auto object-cover object-right select-none' %>
-            </div>
-            
-
-            <!-- Стиль Party -->
-            <div class="col-span-3 w-auto h-90 rounded-3xl overflow-hidden">
-                <%= image_tag 'styles/party-style.png', class: 'w-full h-auto object-cover object-right select-none' %>
-            </div>
-
-            <!-- Стиль Sport -->
-            <div class="col-span-2 w-auto h-90 rounded-3xl overflow-hidden">
-                <%= image_tag 'styles/sport-style.png', class: 'w-full h-auto object-cover object-center select-none' %>
-            </div>
-        </div>
+<!-- Часть "Найди свой стиль" -->
+<div class="h-auto bg-rock-100 rounded-3xl">
+  <h1 class="flex justify-center pt-24">Найди свой стиль</h1>
+  <!-- Карточки категорий -->
+  <div class="grid grid-cols-5 gap-7 px-20 pt-16 pb-24">
+    <!-- Стиль Casual -->
+    <div class="flex max-h-100 col-span-2 rounded-3xl overflow-hidden">
+      <h3 class="absolute p-6">Повседневный</h3>
+      <%= image_tag 'styles/casual.png', class: "w-full h-auto rounded-3xl object-cover select-none" %>
     </div>
+
+    <!-- Стиль Formal -->
+    <div class="flex max-h-100 col-span-3 rounded-3xl overflow-hidden">
+      <h3 class="absolute p-6">Профессиональный</h3>
+      <%= image_tag 'styles/formal.png', class: "w-full h-auto rounded-3xl object-cover select-none" %>
+    </div>
+
+    <!-- Стиль Party -->
+    <div class="flex max-h-100 col-span-3 rounded-3xl overflow-hidden">
+      <h3 class="absolute p-6">Праздничный</h3>
+      <%= image_tag 'styles/party.png', class: "w-full h-auto rounded-3xl object-cover select-none" %>
+    </div>
+
+    <!-- Стиль Sport -->
+    <div class="flex max-h-100 col-span-2 rounded-3xl overflow-hidden">
+      <h3 class="absolute p-6">Спортивный</h3>
+      <%= image_tag 'styles/sport.png', class: "w-full h-auto rounded-3xl object-cover select-none" %>
+    </div>
+  </div>
 </div>
 
-<h1 class="pt-20 pb-14 font-primary text-primary-element flex justify-start text-5xl font-black">Отзывы наших покупателей</h1>
-<div class="grid grid-row-1 gap-6">
+<h1 class="flex justify-start pt-20 pb-14">Отзывы наших покупателей</h1>
 
+<div class="grid grid-row-1 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 pb-22">
+  <div class=" flex flex-col gap-2 border-2 rounded-4xl border-rock-200 px-8 py-10">
+      <div class="flex items-center gap-1">
+          <% 5.times do |i| %>
+              <%= inline_svg 'icons/star.svg', class: "ml-[-2px] w-6 h-6 #{i < 4 ? 'fill-yellow-400' : 'fill-rock-200'}" %>
+          <% end %>
+      </div>
+      <div class="inline-flex">
+          <h4>Sarah M.</h4>
+          <span class="ml-2 mt-[3px]">
+              <%= inline_svg 'icons/verified-source.svg', class: "fill-green-600 w-7 h-7"%>
+          </span>
+      </div>
+      <p class="font-light">"I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations.”</p>
+  </div>
+
+  <div class=" flex flex-col gap-2 border-2 rounded-4xl border-rock-200 px-8 py-10">
+      <div class="flex items-center gap-1">
+          <% 5.times do |i| %>
+              <%= inline_svg 'icons/star.svg', class: "ml-[-2px] w-6 h-6 #{i < 4 ? 'fill-yellow-400' : 'fill-rock-200'}" %>
+          <% end %>
+      </div>
+      <div class="inline-flex">
+          <h4>Alex K.</h4>
+          <span class="ml-2 mt-[3px]">
+              <%= inline_svg 'icons/verified-source.svg', class: "fill-green-600 w-7 h-7"%>
+          </span>
+      </div>
+      <p class="font-light">"Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.”</p>
+  </div>
+
+  <div class=" flex flex-col gap-2 border-2 rounded-4xl border-rock-200 px-8 py-10">
+      <div class="flex items-center gap-1">
+          <% 5.times do |i| %>
+              <%= inline_svg 'icons/star.svg', class: "ml-[-2px] w-6 h-6 #{i < 4 ? 'fill-yellow-400' : 'fill-rock-200'}" %>
+          <% end %>
+      </div>
+      <div class="inline-flex">
+          <h4>James L.</h4>
+          <span class="ml-2 mt-[3px]">
+              <%= inline_svg 'icons/verified-source.svg', class: "fill-green-600 w-7 h-7"%>
+          </span>
+      </div>
+      <p class="font-light">"As someone who's always on the lookout for unique fashion pieces, I'm thrilled to have stumbled upon Shop.co. The selection of clothes is not only diverse but also on-point with the latest trends.”</p>
+  </div>
 </div>
+
+<%= render "shared/footer" %>
